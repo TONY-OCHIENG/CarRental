@@ -2,8 +2,6 @@ import express from 'express'
 import cors from 'cors'
 import dotenv from 'dotenv'
 import cookieParser from 'cookie-parser'
-import conn from './configs/db.js'
-conn
 dotenv.config()
 
 const app = express()
@@ -13,6 +11,6 @@ app.use(cookieParser())
 app.use(express.json())
 
 
-app.listen(process.env.PORT, () => {
+app.listen(3000, () => {
     console.log("server is running")
 })

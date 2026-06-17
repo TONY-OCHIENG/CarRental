@@ -3,6 +3,7 @@ import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import Home from '../pages/Adminpages/Home'
 
 function Homepage() {
     const [role,setRole] = useState('')
@@ -12,29 +13,18 @@ function Homepage() {
     useEffect(() => {
         axios.get('http://localhost:3000/auth')
         .then((response) => {
-            console.log(!response)
-            if (response) {
+            if (response.data.status) {
                 setRole(response.data.role)
-                setAuth(true)   
             } else {
                 navigate('/login')
-                setAuth(false)
             }
         })
         .catch((error) => console.log(error))
     },[])
-    useEffect(() => {
-        handleNavigation(auth)
-    },[auth])
-    const handleNavigation = (auth) => {
-        if (auth) {
-            navigate('/')
-        } else {
-            navigate('/login')
-        }
-    }
   return (
-    <></>
+    <>{
+        role === 'Admin' && <Home/>
+    }</>
   )
 }
 

@@ -1,6 +1,20 @@
 import React from 'react'
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 function Login() {
+  const [values, setValues] = useState({
+    email:'',
+    password:''
+  })
+  const navigate = useNavigate()
+  const handleValues = (event) => {
+    const { name, value} = event.target
+    setValues((prev) => ({
+      ...prev,
+      [name] : value
+    }))
+  }
   return (
     <div className='bg-gray-100 flex justify-center items-center px-4 h-screen'>
         <div className='p-4 rounded-md bg-white shadow-md w-full md:w-[40%]'>

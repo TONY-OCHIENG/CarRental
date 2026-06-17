@@ -20,7 +20,7 @@ function Login() {
   axios.defaults.withCredentials = true
   const handleSubmit = (event) => {
     event.preventDefault()
-    axios.post('http://localhost:3000/auth/loginAdmin',values)
+    axios.post('http://localhost:3000/auth/loginUser',values)
     .then((response) => {
       console.log(response)
       if (!response.data.status) {
@@ -34,7 +34,7 @@ function Login() {
     .catch((error) => (console.log(error)))
   }
   useEffect(() => {
-        axios.get('http://localhost:3000/auth')
+        axios.get('http://localhost:3000/auth/role')
         .then((response) => {
             if (response.data.status) {
                 navigate('/')   

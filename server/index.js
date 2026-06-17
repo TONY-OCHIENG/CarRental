@@ -8,7 +8,11 @@ dotenv.config()
 
 const app = express()
 //middlewares
-app.use(cors())
+app.use(cors({
+    origin:'http://localhost:5173',
+    methods:['PUT','GET','POST','DELETE'],
+    credentials:true,
+}))
 app.use(cookieParser())
 app.use(express.json())
 app.use('/auth',router)

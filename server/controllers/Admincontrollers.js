@@ -17,11 +17,15 @@ export const loginAdmin = (request, response) => {
                 response.cookie('token',token)
                 return response.status(200).json({status:true, message:"login successfully"})
             } else {
-                return response.status(401).json({status: false, message: "wrong email or password"})
+                return response.status(200).json({status: false, message: "wrong email or password"})
             }
         })
     } catch (error) {
         console.log(error)
         return response.status(500).json({status: false, message:"Internal server error"})
     }
+}
+
+export const adminRole = (request,response) => {
+    return response.status(200).json({status: true, role: request.role})
 }

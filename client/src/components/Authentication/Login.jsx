@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import { toast } from 'react-toastify'
 function Login() {
   const [values, setValues] = useState({
     email:'',
@@ -15,11 +16,18 @@ function Login() {
       [name] : value
     }))
   }
+  axios.defaults.withCredentials = true
   const handleSubmit = (event) => {
     event.preventDefault()
     axios.post('http://localhost:3000/auth/loginAdmin',values)
     .then((response) => {
       console.log(response)
+      if (!response.data.status) {
+        toast.error(response.data.message)
+
+      } else {
+        toast.success(response.data.message)
+      }
     })
     .catch((error) => (console.log(error)))
   }

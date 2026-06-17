@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { toast } from 'react-toastify'
+import { useEffect } from 'react'
 function Login() {
   const [values, setValues] = useState({
     email:'',
@@ -27,10 +28,22 @@ function Login() {
 
       } else {
         toast.success(response.data.message)
+        navigate('/')
       }
     })
     .catch((error) => (console.log(error)))
   }
+  useEffect(() => {
+        axios.get('http://localhost:3000/auth')
+        .then((response) => {
+            if (response.data.status) {
+                navigate('/')   
+            } else {
+                navigate('/login')
+            }
+        })
+        .catch((error) => console.log(error))
+    },[])
   return (
     <div className='bg-gray-100 flex justify-center items-center px-4 h-screen'>
         <div className='p-4 rounded-md bg-white shadow-md w-full md:w-[40%]'>

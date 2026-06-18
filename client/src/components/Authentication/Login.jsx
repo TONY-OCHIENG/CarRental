@@ -28,7 +28,7 @@ function Login() {
 
       } else {
         toast.success(response.data.message)
-        navigate('/')
+        navigate('/admin')
       }
     })
     .catch((error) => (console.log(error)))
@@ -37,7 +37,7 @@ function Login() {
         axios.get('http://localhost:3000/auth/role')
         .then((response) => {
             if (response.data.status) {
-                navigate('/')   
+                navigate('/admin')   
             } else {
                 navigate('/login')
             }

@@ -1,11 +1,40 @@
-import React from 'react'
-import { Outlet } from 'react-router-dom'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
+import { Outlet, useNavigate } from 'react-router-dom'
 
 function Layout() {
+  const navigate = useNavigate()
+  const [auth,setAuth] = useState(false)
+  axios.defaults.withCredentials = true
+
+    useEffect(() => {
+        axios.get('http://localhost:3000/auth/role')
+        .then((response) => {
+          console.log(response)
+            if (response.data.status) {
+                setAuth(true)
+                navigate('/admin')   
+            } else {
+                setAuth(false)
+                navigate('/login')
+            }
+        })
+        .catch((error) => console.log(error))
+    },[])
+    
+   
+
+    let navigateLogin = () => {
+      navigate('/login')
+    }
   return (
     <div>
-        <h1>Layout</h1>
-        <Outlet/>
+      {
+        auth ? <div>
+              <h1>Layout</h1>
+              <Outlet/>
+        </div> : <button className='py-2 px-8 bg-red-500 text-white font-bold mt-10' onClick={navigateLogin}>Click to login</button> 
+      }
     </div>
   )
 }

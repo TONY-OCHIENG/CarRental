@@ -5,15 +5,15 @@ import { Outlet, useNavigate } from 'react-router-dom'
 function Layout() {
   const navigate = useNavigate()
   const [auth,setAuth] = useState(false)
+  const [role, setRole] = useState('')
   axios.defaults.withCredentials = true
 
     useEffect(() => {
         axios.get('http://localhost:3000/auth/role')
         .then((response) => {
-          console.log(response)
             if (response.data.status) {
                 setAuth(true)
-                navigate('/admin')   
+                setRole(response.data.role)   
             } else {
                 setAuth(false)
                 navigate('/login')
@@ -21,8 +21,6 @@ function Layout() {
         })
         .catch((error) => console.log(error))
     },[])
-    
-   
 
     let navigateLogin = () => {
       navigate('/login')

@@ -5,6 +5,7 @@ import { useState } from 'react'
 import Home from './pages/Adminpages/Home'
 import Layout from './pages/Adminpages/Layout'
 import Dashboard from './pages/Adminpages/Dashboard'
+import AdminName from './pages/Adminpages/AdminName'
 
 
 
@@ -15,7 +16,8 @@ function App() {
       <Routes>
         <Route path='/login' element={<Login/>}/>
         <Route path='/admin' element={<Layout/>}>
-          <Route path='/admin' element={<Dashboard/>}/>
+          <Route path='' element={<Dashboard/>}/>
+          <Route path='/admin/name' element={<AdminName/>}/>
         </Route>
       </Routes>
     </>

@@ -30,10 +30,10 @@ function Layout() {
   return (
     <div>
       {
-        auth ? <div>
+        auth  && <div>
               <h1>Layout</h1>
               <Outlet/>
-        </div> : <button className='py-2 px-8 bg-red-500 text-white font-bold mt-10' onClick={navigateLogin}>Click to login</button> 
+        </div> 
       }
     </div>
   )

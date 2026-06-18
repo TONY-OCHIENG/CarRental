@@ -20,7 +20,7 @@ function Login() {
   axios.defaults.withCredentials = true
   const handleSubmit = (event) => {
     event.preventDefault()
-    axios.post('http://localhost:3000/auth/loginUser',values)
+    axios.post('http://localhost:3000/auth/loginAdmin',values)
     .then((response) => {
       console.log(response)
       if (!response.data.status) {

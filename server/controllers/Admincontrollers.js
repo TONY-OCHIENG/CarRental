@@ -31,3 +31,8 @@ export const loginUserAdmin = (request, response) => {
 export const userRole = (request,response) => {
     return response.status(200).json({status: true, role: request.role})
 }
+
+export const logoutAdmin = (request,response) => {
+    response.clearCookie('token')
+    return response.status(200).json({status: true, message:"logout successfully"})
+}

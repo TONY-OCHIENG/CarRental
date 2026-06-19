@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom'
 import { CalendarCheck, CarFront, CreditCard, FileText, LayoutDashboard, Locate, MessageSquare, MessageSquareQuote, PowerCircle, Wrench } from 'lucide-react'
+import {toast} from 'react-toastify'
 function Layout() {
   const navigate = useNavigate()
   const [auth,setAuth] = useState(false)
@@ -36,6 +37,16 @@ function Layout() {
       {name:"Maintenance",path:"/admin/maintenance", icon: Wrench},
       {name:"Track vehicle",path:"/admin/track", icon: Locate},
     ]
+    const handleLogout = () => {
+      axios.get('http://localhost:3000/auth/logoutAdmin')
+      .then((response) => {
+        if (response.data.status) {
+          toast.success(response.data.message)
+          navigate('/login')
+        }
+      })
+      .catch((error) => console.log(error))
+    }
   return (
     <div>
       {
@@ -61,7 +72,7 @@ function Layout() {
                       ))
                     }
                       <div className='min-md:pl-10 pl-5 text-gray-900 mt-2.5'>
-                        <p className='flex gap-2 '><PowerCircle/> <span className='max-md:hidden'>Logout</span></p>
+                        <p className='flex gap-2 ' onClick={handleLogout}><PowerCircle/> <span className='max-md:hidden'>Logout</span></p>
                       </div>
                     
                   </div>

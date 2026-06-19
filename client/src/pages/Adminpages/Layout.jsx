@@ -48,7 +48,7 @@ function Layout() {
                     {
                       dashBoardLinks.map((link,index) => (
                           <NavLink key={index} to={link.path} end className={({isActive}) => `relative flex items-center
-                              max-md:justify-center gap-2 w-full py-2.5 min-md:pl-10 first:mt-6
+                              max-md:justify-center gap-2 w-full rounded-2 py-2.5 min-md:pl-10 first:mt-6
                               text-gray-900 ${isActive && 'bg-red-600 text-white group'}`}>
                               {({isActive}) => (
                                   <>

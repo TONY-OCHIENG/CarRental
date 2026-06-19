@@ -63,7 +63,7 @@ function Layout() {
                               text-gray-900 ${isActive && 'bg-red-600 text-white group'}`}>
                               {({isActive}) => (
                                   <>
-                                    <link.icon className='w-5 h-5'/>
+                                    <link.icon className={`w-5 h-5 text-red-600 ${isActive && 'text-white'}`}/>
                                     <p className='max-md:hidden'>{link.name}</p>
                                     <span className={`w-1.5 h-10 rounded-1 right-0 absolute ${isActive && 'bg-white'}`}/>
                                   </>
@@ -72,7 +72,7 @@ function Layout() {
                       ))
                     }
                       <div className='min-md:pl-10 pl-5 text-gray-900 mt-2.5'>
-                        <p className='flex gap-2 ' onClick={handleLogout}><PowerCircle/> <span className='max-md:hidden'>Logout</span></p>
+                        <p className='flex gap-2 cursor-pointer' onClick={handleLogout}><PowerCircle className='text-red-600'/> <span className='max-md:hidden'>Logout</span></p>
                       </div>
                     
                   </div>

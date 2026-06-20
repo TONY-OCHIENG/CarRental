@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom'
-import { CalendarCheck, CarFront, CreditCard, FileText, LayoutDashboard, Locate, MessageSquare, MessageSquareQuote, PowerCircle, Wrench } from 'lucide-react'
+import { CalendarCheck, CarFront, CreditCard, FileText, LayoutDashboard, Locate, MessageSquare, MessageSquareQuote, PowerCircle, User, UserIcon, Wrench } from 'lucide-react'
 import {toast} from 'react-toastify'
 function Layout() {
   const navigate = useNavigate()
@@ -77,7 +77,15 @@ function Layout() {
                     
                   </div>
               </div>
-              <div>
+              <div className='flex overflow-y-auto flex-col w-[82%]'>
+                <div className='fixed  top-0 w-full z-10 h-[8vh] bg-white border-b shadow-md'>
+                  <div className='relative w-full h-full flex items-center max-w-[80%]'>
+                    <div className='absolute right-0 flex items-center'>
+                      <UserIcon className='h-5 w-5 text-red-600'/>
+                      <h1 className='font-extrabold text-xl text-red-600'>Hi {role}</h1>
+                    </div>
+                  </div>
+                </div>
                  <Outlet/>
               </div>
         </div> 

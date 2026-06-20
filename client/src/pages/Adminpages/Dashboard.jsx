@@ -1,4 +1,4 @@
-import { BadgeDollarSign, Bolt, CarFront, CarIcon, ClockAlert, DollarSign, RotateCcw } from 'lucide-react'
+import { BadgeDollarSign, Bolt, CarFront, CarIcon, ClockAlert, Delete, DollarSign, RotateCcw } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 import { Outlet } from 'react-router-dom'
 
@@ -17,9 +17,10 @@ function Dashboard() {
   }
   let reminderValues = JSON.parse(localStorage.getItem('reminder')) || []
   const handleSubmit = (event) => {
+    const { name } = value
     event.preventDefault()
     window.location.reload()
-    reminderValues.push({value})
+    reminderValues.push({id: Math.floor(Math.random() * 10000) + 1, value:name})
     localStorage.setItem('reminder',JSON.stringify(reminderValues))
     setValue({name:''})    
   }
@@ -92,9 +93,9 @@ function Dashboard() {
                 <button className='py-2 px-4 text-white rounded-md bg-red-600'>Add</button>
               </form>
               <div className='md:w-[94%] w-full p-4 rounded-md overflow-y-auto border h-[250px] mt-4'>
-                {reminder.map(({value}) => (
+                {reminder.map(({value,id}) => (
                   <ul>
-                    <li className='p-2 w-full mb-2 text-gray-600 text-sm items-center rounded-md bg-red-50'>{value.name}</li>
+                    <li className='p-2 flex items-center justify-between text-sm bg-red-50 rounded-1 text-gray-600 mb-2'>{value} <Delete className='text-red-600 cursor-pointer'/></li>
                   </ul>
                 ))}
               </div>

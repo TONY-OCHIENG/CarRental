@@ -27,6 +27,11 @@ function Dashboard() {
   useEffect(() => {
     SetReminder(reminderValues)
   },[])
+  const handleDelete = (id) => {
+    reminderValues = reminderValues.filter((item) => item.id !== id)
+    localStorage.setItem('reminder',JSON.stringify(reminderValues))
+    window.location.reload()
+  }
   return (
     <div className='h-full w-full py-20 '>
       <div className='max-w-7xl md:max-w-[90%] px-2 mx-auto'>
@@ -93,9 +98,9 @@ function Dashboard() {
                 <button className='py-2 px-4 text-white rounded-md bg-red-600'>Add</button>
               </form>
               <div className='md:w-[94%] w-full p-4 rounded-md overflow-y-auto border h-[250px] mt-4'>
-                {reminder.map(({value,id}) => (
+                {reminder.map((item,index) => (
                   <ul>
-                    <li className='p-2 flex items-center justify-between text-sm bg-red-50 rounded-1 text-gray-600 mb-2'>{value} <Delete className='text-red-600 cursor-pointer'/></li>
+                    <li className='p-2 flex items-center justify-between text-sm bg-red-50 rounded-1 text-gray-600 mb-2'>{item.value} <Delete className='text-red-600 cursor-pointer' onClick={() => handleDelete(item.id)}/></li>
                   </ul>
                 ))}
               </div>

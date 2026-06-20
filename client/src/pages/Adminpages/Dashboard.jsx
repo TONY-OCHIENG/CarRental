@@ -1,11 +1,12 @@
 import { BadgeDollarSign, Bolt, CarFront, CarIcon, ClockAlert, DollarSign, RotateCcw } from 'lucide-react'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Outlet } from 'react-router-dom'
 
 function Dashboard() {
   const [value, setValue] = useState({
     name:''
   })
+  const [reminder,SetReminder] = useState([])
   const handleValue = (event) => {
     const { name, value} = event.target
     setValue((prev) => ({
@@ -14,7 +15,17 @@ function Dashboard() {
     }))
     
   }
-  console.log(value)
+  let reminderValues = JSON.parse(localStorage.getItem('reminder')) || []
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    window.location.reload()
+    reminderValues.push({value})
+    localStorage.setItem('reminder',JSON.stringify(reminderValues))
+    setValue({name:''})    
+  }
+  useEffect(() => {
+    SetReminder(reminderValues)
+  },[])
   return (
     <div className='h-full w-full py-20 '>
       <div className='max-w-7xl md:max-w-[90%] px-2 mx-auto'>
@@ -76,10 +87,17 @@ function Dashboard() {
           <div className='flex flex-col'>
             <h1 className='text-gray-900 font-bold'>Reminders</h1>
             <div className='h-[350px] md:w-[540px] w-full bg-white rounded-md shadow-md p-4'>
-              <form action="" className='flex gap-2'>
-                <input type="text" onChange={handleValue} className='p-2 border md:w-[80%] rounded-md' name='name' placeholder='Enter reminder...'/>
+              <form action="" onSubmit={handleSubmit} className='flex gap-2'>
+                <input type="text" onChange={handleValue} required className='p-2 border md:w-[80%] rounded-md' name='name' placeholder='Enter reminder...'/>
                 <button className='py-2 px-4 text-white rounded-md bg-red-600'>Add</button>
               </form>
+              <div className='md:w-[94%] w-full p-4 rounded-md overflow-y-auto border h-[250px] mt-4'>
+                {reminder.map(({value}) => (
+                  <ul>
+                    <li className='p-2 w-full mb-2 text-gray-600 text-sm items-center rounded-md bg-red-50'>{value.name}</li>
+                  </ul>
+                ))}
+              </div>
             </div>
           </div>
          </div>

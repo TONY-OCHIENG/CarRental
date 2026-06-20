@@ -77,7 +77,7 @@ function Layout() {
                     
                   </div>
               </div>
-              <div className='flex overflow-y-auto flex-col w-[82%]'>
+              <div className='flex overflow-y-auto flex-col w-full'>
                 <div className='fixed  top-0 w-full z-10 h-[8vh] bg-white border-b shadow-md'>
                   <div className='relative w-full h-full flex items-center max-w-[80%]'>
                     <div className='absolute right-0 flex items-center'>

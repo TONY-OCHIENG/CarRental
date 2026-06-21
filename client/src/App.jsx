@@ -6,6 +6,7 @@ import Home from './pages/Adminpages/Home'
 import Layout from './pages/Adminpages/Layout'
 import Dashboard from './pages/Adminpages/Dashboard'
 import AdminName from './pages/Adminpages/AdminName'
+import Vehicles from './pages/Adminpages/Vehicles'
 
 
 
@@ -17,7 +18,7 @@ function App() {
         <Route path='/login' element={<Login/>}/>
         <Route path='/admin' element={<Layout/>}>
           <Route path='' element={<Dashboard/>}/>
-          <Route path='/admin/vehicle' element={<AdminName/>}/>
+          <Route path='/admin/vehicle' element={<Vehicles/>}/>
         </Route>
       </Routes>
     </>

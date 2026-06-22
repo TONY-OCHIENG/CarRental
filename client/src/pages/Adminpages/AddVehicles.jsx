@@ -1,6 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 function AddVehicles() {
+  const [value, setValues] = useState({
+    name:'',
+    capacity:'',
+    price:'',
+    type:'',
+    image:''
+  })
+  const handleValueChange = (event) => {
+    const { name, value } = event.target
+    setValues((prev) => ({
+      ...prev,
+      [name] : value
+    }))
+  }
   return (
     <div className='py-16 px-10 h-full w-full flex justify-center mt-10'>
       <div className='md:w-[50%] w-full'>

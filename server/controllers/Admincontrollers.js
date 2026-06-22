@@ -36,3 +36,17 @@ export const logoutAdmin = (request,response) => {
     response.clearCookie('token')
     return response.status(200).json({status: true, message:"logout successfully"})
 }
+
+export const addVehicles = (request,response) => {
+    const {name,capacity,price,type,image} = request.body
+    if (name === "" || capacity === "" || price === "" || type === "" || image === "" ){
+        response.status(200).json({status:true, message:"Please fill all fields"})
+    }
+    try {
+        const sqlQuerry = "INSERT INTO vehicles(vehicleName,vehicleCapacity,vehiclePrice,vehicleType,vehicleImage) VALUES(?,?,?,?,?)"
+        
+    } catch (error) {
+        console.log(error)
+        return response.status(500).json({status: false, message:"Internal server error"})
+    }
+}

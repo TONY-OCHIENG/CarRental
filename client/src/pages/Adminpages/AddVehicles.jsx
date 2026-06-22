@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import {useNavigate} from 'react-router-dom'
+import {toast} from 'react-toastify'
 
 function AddVehicles() {
   const [value, setValues] = useState({
@@ -9,6 +11,7 @@ function AddVehicles() {
     type:'',
     image:''
   })
+  const navigate = useNavigate()
   const handleValueChange = (event) => {
     const { name, value } = event.target
     setValues((prev) => ({
@@ -27,7 +30,12 @@ function AddVehicles() {
     
     axios.post('http://localhost:3000/auth/addvehicles',formData)
     .then((response) => {
-      console.log(response)
+      if (response.data.status) {
+          toast.success(response.data.message)
+          navigate('/admin/vehicle')
+      } else {
+        toast.error(response.data.message)
+      }
     })
     .catch((error) => {
       console.log(error)

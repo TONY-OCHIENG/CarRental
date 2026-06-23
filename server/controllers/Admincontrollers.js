@@ -38,13 +38,19 @@ export const logoutAdmin = (request,response) => {
 }
 
 export const addVehicles = (request,response) => {
-    const {name,capacity,price,type,image} = request.body
-    if (name === "" || capacity === "" || price === "" || type === "" || image === "" ){
+    const {name,capacity,price,type} = request.body
+    const { filename } = request.file
+    console.log(name,capacity,price,type,filename)
+    if (name === "" || capacity === "" || price === "" || type === "" || filename === "" ){
         response.status(200).json({status:true, message:"Please fill all fields"})
     }
     try {
         const sqlQuerry = "INSERT INTO vehicles(vehicleName,vehicleCapacity,vehiclePrice,vehicleType,vehicleImage) VALUES(?,?,?,?,?)"
-        
+        conn.query(sqlQuerry,[name,capacity,price,type,filename], (error,result) => {
+            if (error) return response.status(200).json({status: false, message:error})
+            return response.status(201).json({status:true, message:"Vehicle added successfully"})
+        })
+
     } catch (error) {
         console.log(error)
         return response.status(500).json({status: false, message:"Internal server error"})

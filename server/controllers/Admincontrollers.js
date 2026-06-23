@@ -56,3 +56,12 @@ export const addVehicles = (request,response) => {
         return response.status(500).json({status: false, message:"Internal server error"})
     }
 }
+
+export const getAllVehicles = (request, response) => {
+    const { page , limit } = request.query
+    const offset = (page - 1) * limit
+    conn.query("SELECT * FROM vehicles LIMIT ? OFFSET ?",[+limit,+offset],(error,result) => {
+        if (error) return response.json({status: false, message:error})
+        return response.json({status:true, result:result})
+    })
+}

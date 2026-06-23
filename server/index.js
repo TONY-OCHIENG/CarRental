@@ -16,6 +16,7 @@ app.use(cors({
 app.use(cookieParser())
 app.use(express.json())
 app.use('/auth',adminRoute)
+app.use(express.static('public'))
 
 app.listen(process.env.PORT, () => {
     console.log("server is running")

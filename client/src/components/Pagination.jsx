@@ -1,4 +1,5 @@
 import React from 'react'
+import { ArrowLeft, ChevronLeftCircle, ChevronRightCircle} from 'lucide-react'
 
 function Pagination({page,setPage,total,limit}) {
     const currentPage = page + 1
@@ -31,7 +32,11 @@ function Pagination({page,setPage,total,limit}) {
         return numbers
     }
   return (
-    <div>Pagination</div>
+    <div className='flex justify-between items-center'>
+        <ChevronLeftCircle size={25} onClick={handlePrev} className={`${currentPage === 1 ? 'text-gray-400' : 'text-red-600'}`}/>
+         { renderPages() }
+        <ChevronRightCircle size={25} onClick={handleNext} className={`${currentPage === totalPage ? 'text-gray-400': 'bg-red-600'}`}/>
+    </div>
   )
 }
 

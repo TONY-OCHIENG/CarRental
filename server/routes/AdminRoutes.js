@@ -10,5 +10,5 @@ adminRoute.get('/logoutAdmin',logoutAdmin)
 adminRoute.post('/addvehicles',upload.single('image'),addVehicles)
 adminRoute.get('/vehicles',getAllVehicles)
 adminRoute.get('/vehicles/:id',getsingleVehicle)
-adminRoute.patch('/vehicles/:id',editVehicle)
+adminRoute.put('/vehicles/:id',editVehicle)
 export default adminRoute

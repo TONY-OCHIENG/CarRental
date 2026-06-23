@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 function EditVehicle() {
     const [vehicle, setVehicle] = useState([])
@@ -17,14 +18,24 @@ function EditVehicle() {
         }
         fetchSingleVehicle()
     },[id])
+    
+    const handleSubmit = (event) => {
+        event.preventDefault()
+        axios.put(`http://localhost:3000/auth/vehicles/${id}`, vehicle)
+        .then((response) => {
+            if (response.data.status) {
+                toast.success(response.data.message)
+            }
+        })
+        .catch((error) => console.log(error))        
+    }
   return (
     <div className='py-16 px-10 w-full h-[100vh]'>
         <div className='flex justify-center  w-full '>
-
                 
                 <div className='w-full md:w-[50%] bg-white rounded-md shado-md p-4'>
-                    <img src={`http://localhost:3000/images/`+ vehicle.vehicleImage} alt="" />
-                    <form action="">
+                    <img src={`http://localhost:3000/images/`+ vehicle.vehicleImage} alt="" className='w-full object-cover' />
+                    <form action="" onSubmit={handleSubmit}>
                     <div className='flex md:flex-row flex-col  justify-between gap-2'>
                         <div className='md:w-[50%] w-full'>
                             <label htmlFor="name">Name</label>

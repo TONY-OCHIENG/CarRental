@@ -63,8 +63,14 @@ export const getAllVehicles = (request, response) => {
         const offset = (page - 1) * limit
         const sqlQuerry = "SELECT * FROM vehicles LIMIT ? OFFSET ?"
         conn.query(sqlQuerry,[+limit,+offset],(error,result) => {
-            if (error) return response.status(200).json({status: false, message:error})
-            return response.status(200).json({status: false, result: result})
+            if (error) return response.status(200).json({status: false, message:error})    
+            if (result.length > 0) {
+                const totalVehicles = "SELECT count(*) as count FROM vehicles"
+                conn.query(totalVehicles,(error,vehicles) => {
+                    if (error) return response.status(200).json({status: false, message: error})
+                    return response.status(200).json({status: true, result: {result: result, total: vehicles[0].count}})
+                })
+            }
         })
     } catch (error) {
         console.log(error)

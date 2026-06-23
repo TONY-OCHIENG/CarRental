@@ -59,9 +59,15 @@ export const addVehicles = (request,response) => {
 
 export const getAllVehicles = (request, response) => {
     const { page , limit } = request.query
-    const offset = (page - 1) * limit
-    conn.query("SELECT * FROM vehicles LIMIT ? OFFSET ?",[+limit,+offset],(error,result) => {
-        if (error) return response.json({status: false, message:error})
-        return response.json({status:true, result:result})
-    })
+    try {
+        const offset = (page - 1) * limit
+        const sqlQuerry = "SELECT * FROM vehicles LIMIT ? OFFSET ?"
+        conn.query(sqlQuerry,[+limit,+offset],(error,result) => {
+            if (error) return response.status(200).json({status: false, message:error})
+            return response.status(200).json({status: false, result: result})
+        })
+    } catch (error) {
+        console.log(error)
+        return response.status(500).json({status:false, message:"Internal server error"})
+    }
 }

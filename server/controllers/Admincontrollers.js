@@ -99,9 +99,12 @@ export const getsingleVehicle = (request,response) => {
 export const editVehicle = (request,response) => {
     const { id } = request.params
     const {vehiclePrice, vehicleName, vehicleCapacity, vehicleType } = request.body
-    console.log(vehicleName,vehicleCapacity,vehiclePrice,vehicleType)
     try {
         const sqlQuerry = "UPDATE vehicles SET vehiclePrice=?, vehicleName=?, vehicleCapacity=?, vehicleType =? WHERE vehicle_id = ?"
+        conn.query(sqlQuerry,[vehiclePrice, vehicleName, vehicleCapacity, vehicleType, id], (error,result) => {
+            if (error) return response.status(200).json({status:false, message:error})
+            return response.status(200).json({status: true, message: "vehicle updated successfully"})
+        })
     } catch (error) {
         console.log(error)
         return response.status(500).json({status: false, message: "Internal server error"})

@@ -16,6 +16,19 @@ function Pagination({page,setPage,total,limit}) {
     const handleClick = (data) => {
         setPage(data - 1)
     }    
+
+    const renderPages = () => {
+        const numbers = []
+        const startPage = Math.max(1,currentPage - 3)
+        const endPage = Math.min(totalPage,currentPage + 3)
+        for (let i = startPage; i < endPage; i++) {
+            numbers.push(<button onClick={() => handleClick(i)} key={i}
+            className={`w-[35px] h-[35px] rounded-full font-medium flex justify-center items-center
+            ${i === currentPage ? "bg-red-600 border text-white" : "text-gray-400 border"}     
+            `}
+            >{i}</button>)
+        }
+    }
   return (
     <div>Pagination</div>
   )

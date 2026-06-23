@@ -95,3 +95,15 @@ export const getsingleVehicle = (request,response) => {
         return response.status(500).json({status: false, message:"Internal server error"})
     }
 }
+
+export const editVehicle = (request,response) => {
+    const { id } = request.params
+    const {vehiclePrice, vehicleName, vehicleCapacity, vehicleType } = request.body
+    console.log(vehicleName,vehicleCapacity,vehiclePrice,vehicleType)
+    try {
+        const sqlQuerry = "UPDATE vehicles SET vehiclePrice=?, vehicleName=?, vehicleCapacity=?, vehicleType =? WHERE vehicle_id = ?"
+    } catch (error) {
+        console.log(error)
+        return response.status(500).json({status: false, message: "Internal server error"})
+    }
+}

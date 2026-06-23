@@ -7,6 +7,14 @@ function Pagination({page,setPage,total,limit}) {
         if (page < total - 1) {
             setPage(page + 1)
         }
+    }
+    const handlePrev = () => {
+        if (page > 0) {
+            setPage(page - 1)
+        }
+    }
+    const handleClick = (data) => {
+        setPage(data - 1)
     }    
   return (
     <div>Pagination</div>

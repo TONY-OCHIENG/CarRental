@@ -28,6 +28,7 @@ function Pagination({page,setPage,total,limit}) {
             `}
             >{i}</button>)
         }
+        return numbers
     }
   return (
     <div>Pagination</div>

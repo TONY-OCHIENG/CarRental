@@ -61,7 +61,7 @@ export const getAllVehicles = (request, response) => {
     const { page , limit } = request.query
     try {
         const offset = (page - 1) * limit
-        const sqlQuerry = "SELECT * FROM vehicles LIMIT ? OFFSET ?"
+        const sqlQuerry = "SELECT * FROM vehicles WHERE vehicleCondition = 'Good' LIMIT ? OFFSET ?  "
         conn.query(sqlQuerry,[+limit,+offset],(error,result) => {
             if (error) return response.status(200).json({status: false, message:error})    
             if (result.length > 0) {

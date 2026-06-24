@@ -110,3 +110,17 @@ export const editVehicle = (request,response) => {
         return response.status(500).json({status: false, message: "Internal server error"})
     }
 }
+
+export const deleteVehicle = (request,response) => {
+    const { id } = request.params
+    try {
+        const sqlQuerry = "DELETE FROM vehicles WHERE vehicle_id = ?"
+        conn.query(sqlQuerry,[id], (error,result) => {
+            if (error) return response.status(200).json({status: false, message: error})
+            return response.status(200).json({status: true, message:"Vehicle deleted successfully"})
+        })
+    } catch (error) {
+        console.log(error)
+        return response.status(500).json({status:false, message:"Internal server error"})
+    }
+}

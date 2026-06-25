@@ -29,7 +29,7 @@ function Layout() {
     const dashBoardLinks = [
       {name:"Dashboard",path:"/admin", icon: LayoutDashboard},
       {name:"Vehicle",path:"/admin/vehicle", icon: CarFront},
-      {name:"Bookings",path:"/admin/booking", icon: CalendarCheck},
+      {name:"Bookings",path:"/admin/bookings", icon: CalendarCheck},
       {name:"Payments",path:"/admin/payment", icon: CreditCard},
       {name:"Reports",path:"/admin/report", icon: FileText},
       {name:"Message",path:"/admin/message", icon: MessageSquare},

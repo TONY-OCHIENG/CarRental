@@ -9,6 +9,7 @@ import AdminName from './pages/Adminpages/AdminName'
 import Vehicles from './pages/Adminpages/Vehicles'
 import AddVehicles from './pages/Adminpages/AddVehicles'
 import EditVehicle from './pages/Adminpages/EditVehicle'
+import Bookings from './pages/Adminpages/Bookings'
 
 
 
@@ -23,6 +24,7 @@ function App() {
           <Route path='/admin/vehicle' element={<Vehicles/>}/>
           <Route path='/admin/vehicle/add-vehicle' element={<AddVehicles/>}/>
           <Route path='/admin/vehicle/:id' element={<EditVehicle/>}/>
+          <Route path='/admin/bookings' element={<Bookings/>}/>
         </Route>
       </Routes>
     </>

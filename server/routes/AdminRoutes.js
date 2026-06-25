@@ -1,5 +1,5 @@
 import express from 'express'
-import { addVehicles, deleteVehicle, editVehicle, getAllVehicles, getsingleVehicle, loginUserAdmin, logoutAdmin, repairVehicles, userRole } from '../controllers/Admincontrollers.js'
+import { addVehicles, deleteVehicle, editVehicle, getAllRepairs, getAllVehicles, getsingleVehicle, loginUserAdmin, logoutAdmin, maintenance, repairVehicles, userRole } from '../controllers/Admincontrollers.js'
 import { auth } from '../middlewares/auth.js'
 import { upload } from '../configs/imageupload.js'
 
@@ -13,4 +13,6 @@ adminRoute.get('/vehicles/:id',getsingleVehicle)
 adminRoute.put('/vehicles/:id',editVehicle)
 adminRoute.delete('/vehicles/:id',deleteVehicle)
 adminRoute.put('/maintenance/:id',repairVehicles)
+adminRoute.get('/repair',getAllRepairs)
+adminRoute.put('/repair/:id',maintenance)
 export default adminRoute

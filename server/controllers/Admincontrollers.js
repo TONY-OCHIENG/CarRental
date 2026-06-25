@@ -65,7 +65,7 @@ export const getAllVehicles = (request, response) => {
         conn.query(sqlQuerry,[+limit,+offset],(error,result) => {
             if (error) return response.status(200).json({status: false, message:error})    
             if (result.length > 0) {
-                const totalVehicles = "SELECT count(*) as count FROM vehicles"
+                const totalVehicles = "SELECT count(*) as count FROM vehicles WHERE vehicleCondition = 'Good'"
                 conn.query(totalVehicles,(error,vehicles) => {
                     if (error) return response.status(200).json({status: false, message: error})
                     return response.status(200).json({status: true, result: {result: result, total: vehicles[0].count}})
@@ -132,6 +132,19 @@ export const repairVehicles = (request,response) => {
         conn.query(sqlQuerry,[id],(error,result) => {
             if (error) return response.status(200).json({status: false, message: error})
             return response.status(200).json({status:true, message:"Vehicle scheduled for maintenance"})
+        })
+    } catch (error) {
+        console.log(error)
+        return response.status(500).json({status: false, message:"Internal server error"})
+    }
+}
+
+export const getAllRepairs = (request, response) => {
+    try {
+        const sqlQuerry = "SELECT * FROM vehicles WHERE vehicleCondition = 'Bad'"
+        conn.query(sqlQuerry,(error,result) => {
+            if (error) return response.status(200).json({status: false, message: error})
+            return response.status(200).json({status: true, result: result})
         })
     } catch (error) {
         console.log(error)

@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import { toast } from 'react-toastify'
 
 function Maintenance() {
     const [vehicle, setVehicles] = useState([])
@@ -17,6 +18,15 @@ function Maintenance() {
         }
         fetcVehicles()
     },[])
+    const handleRepair = (id) => {
+        axios.put(`http://localhost:3000/auth/repair/${id}`)
+        .then((response) => {
+            if (response.data.status){
+                toast.success(response.data.message)
+            }
+        })
+        .catch((error) => (console.log(error)))
+    }
     console.log(vehicle)
   return (
     <div className='py-16 max-w-7xl md:w-[90%] mx-auto px-4 h-100vh'>
@@ -31,7 +41,7 @@ function Maintenance() {
                     <h3 className='text-gray-400 text-sm'>{item.vehicleCapacity} seats</h3>
                     <h3 className='text-gray-400 text-sm'>{item.vehicleType} </h3>
                     <h3 className='text-gray-400 text-sm'>{item.vehiclePrice} / day</h3>
-                    <button className='w-full rounded-md text-white py-1 mt-1 bg-red-600 cursor-pointer font-bold'>Repaired</button>
+                    <button onClick={() => handleRepair(item.vehicle_id)} className='w-full rounded-md text-white py-1 mt-1 bg-red-600 cursor-pointer font-bold'>Repaired</button>
                 </div>
             ))
           }

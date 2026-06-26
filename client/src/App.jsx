@@ -17,6 +17,7 @@ import Feedback from './pages/Adminpages/Feedback'
 import Maintenance from './pages/Adminpages/Maintenance'
 import Track from './pages/Adminpages/Track'
 import Register from './pages/user/Register'
+import UserLogin from './pages/user/UserLogin'
 
 
 
@@ -40,6 +41,7 @@ function App() {
           <Route path='/admin/track' element={<Track/>}/>
         </Route>
         <Route path='/user/register' element={<Register/>}/>
+        <Route path='/user/login' element={<UserLogin/>}/>
       </Routes>
     </>
   )

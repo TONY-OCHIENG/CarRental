@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
 function Register() {
@@ -41,7 +42,7 @@ function Register() {
                 <label htmlFor="password" className='text-gray-600 text-lg'>Password</label>
                 <input type="password" id='password' onChange={handleValue}  name='password' className='border-red-700 p-2 w-full rounded-md mb-2 border' required/>
                 <button className='w-full py-2 rounded-md cursor-pointer text-red-700 bg-gray-900 text-lg mt-2 font-bold'>Register</button>
-                <p className='text-xs text-gray-600 mt-4'>Already have an Account? Click to login</p>
+                <p className='text-xs text-gray-600 mt-4'>Already have an Account? <Link to={'/user/login'} className='font-bold'>Click to login</Link></p>
             </form>
         </div>
     </div>

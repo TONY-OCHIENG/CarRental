@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
 function Register() {
@@ -10,6 +10,7 @@ function Register() {
         email:'',
         password:''
     })
+    const navigate = useNavigate()
     const handleValue = (event) => {
         const { name, value} = event.target
         setUserDetails((prev) => ({
@@ -23,6 +24,7 @@ function Register() {
         .then((response) => {
             if (response.data.status) {
                 toast.success(response.data.message)
+                navigate('/user/login')
             }
         })
         .catch((error) => {

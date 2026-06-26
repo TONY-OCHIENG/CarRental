@@ -22,6 +22,8 @@ function UserLogin() {
         .then((response) => {
             if (response.data.status){
                 toast.success(response.data.message)
+            } else {
+                toast.error(response.data.message)
             }
         })
         .catch((error) => console.log(error))

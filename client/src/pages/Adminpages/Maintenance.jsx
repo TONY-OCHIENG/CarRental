@@ -27,7 +27,6 @@ function Maintenance() {
         })
         .catch((error) => (console.log(error)))
     }
-    console.log(vehicle)
   return (
     <div className='py-16 max-w-7xl md:w-[90%] mx-auto px-4 h-100vh'>
         <div className='w-full h-full'>

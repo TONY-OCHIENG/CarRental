@@ -4,6 +4,7 @@ import { NavLink, Outlet, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { useEffect } from 'react'
 import { useState } from 'react'
+import { toast } from 'react-toastify'
 
 function UserLayout() {
    const navigate = useNavigate()
@@ -29,6 +30,19 @@ function UserLayout() {
         })
         .catch((error) => {console.log(error)})
     },[]) 
+
+    const handleLogout = () => {
+        axios.get('http://localhost:3000/auth/logoutUser')
+        .then((response) => {
+            if (response.data.status) {
+                toast.success(response.data.message)
+                navigate('/user.login')
+            }
+        })
+        .catch((error) => {
+            toast.error(error)
+        })
+    }
   return (
     <div>
       { auth && 

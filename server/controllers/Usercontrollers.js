@@ -52,3 +52,8 @@ export const loginuser = (request,response) => {
 export const userName = (request,response) => {
     return response.status(200).json({status: true, name: request.name})
 }
+
+export const logoutUser = (request,response) => {
+    response.clearCookie('token')
+    return response.status(200).json({status: true, message:"logout successfully"})
+}

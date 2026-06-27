@@ -48,3 +48,7 @@ export const loginuser = (request,response) => {
         return response.status(500).json({status: false, message: "Internal server error"})
     }
 }
+
+export const userName = (request,response) => {
+    return response.status(200).json({status: true, name: request.name})
+}

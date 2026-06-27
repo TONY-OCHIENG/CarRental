@@ -1,17 +1,38 @@
 import React from 'react'
 import { CalendarCheck, CarFront, CreditCard, FileText, LayoutDashboard, Locate, MessageSquare, MessageSquareQuote, PowerCircle, User, User2Icon, UserIcon, Wrench } from 'lucide-react'
-import { NavLink, Outlet } from 'react-router-dom'
+import { NavLink, Outlet, useNavigate } from 'react-router-dom'
+import axios from 'axios'
+import { useEffect } from 'react'
+import { useState } from 'react'
 
 function UserLayout() {
+   const navigate = useNavigate()
+   const [userName, setUserName] = useState('')
+   const [auth, setAuth] = useState(false)
    const dashBoardLinks = [
       {name:"Vehicle",path:"/user", icon: CarFront},
       {name:"Bookings",path:"/user/bookings", icon: CalendarCheck},
       {name:"Feedbacks",path:"/user/feedback", icon: MessageSquareQuote},
       {name:"Profile",path:"/user/profile", icon: User2Icon},
     ]
-  
+    axios.defaults.withCredentials = true
+    useEffect(() => {
+        axios.get('http://localhost:3000/auth/user')
+        .then((response) => {
+            if (response.data.status){
+                setAuth(true)
+                setUserName(response.data.name)
+            } else {
+              setAuth(false)
+              navigate('/user/login')
+            }
+        })
+        .catch((error) => {console.log(error)})
+    },[]) 
   return (
-        <div className='w-full h-[100vh] bg-gray-100 flex'>
+    <div>
+      { auth && 
+           <div className='w-full h-[100vh] bg-gray-100 flex'>
               <div className='h-[100vh] bg-white border-r w-[18%] md:w-[16%]'>
                 <h1 className='text-center md:block hidden mt-4 font-extrabold text-2xl'>ROUTE
                   <span className='text-red-600'>CAB</span></h1>
@@ -42,13 +63,16 @@ function UserLayout() {
                   <div className='relative w-full h-full flex items-center max-w-[80%]'>
                     <div className='absolute right-0 flex items-center'>
                       <UserIcon className='h-5 w-5 text-red-600'/>
-                      <h1 className='font-extrabold text-xl text-red-600'>Hi</h1>
+                      <h1 className='font-extrabold text-xl text-red-600'>Hi {userName}</h1>
                     </div>
                   </div>
                 </div>
                  <Outlet/>
               </div>
         </div> 
+     }
+    </div>
+    
   )
 }
 

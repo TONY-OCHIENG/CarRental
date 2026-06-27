@@ -36,7 +36,7 @@ function UserLayout() {
         .then((response) => {
             if (response.data.status) {
                 toast.success(response.data.message)
-                navigate('/user.login')
+                navigate('/user/login')
             }
         })
         .catch((error) => {
@@ -67,7 +67,7 @@ function UserLayout() {
                       ))
                     }
                       <div className='min-md:pl-10 pl-5 text-gray-900 mt-2.5'>
-                        <p className='flex gap-2 cursor-pointer'><PowerCircle className='text-red-600'/> <span className='max-md:hidden'>Logout</span></p>
+                        <p className='flex gap-2 cursor-pointer' onClick={() => handleLogout()}><PowerCircle className='text-red-600'/> <span className='max-md:hidden'>Logout</span></p>
                       </div>
                     
                   </div>

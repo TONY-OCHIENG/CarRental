@@ -19,6 +19,10 @@ import Track from './pages/Adminpages/Track'
 import Register from './pages/user/Register'
 import UserLogin from './pages/user/UserLogin'
 import UserLayout from './pages/user/UserLayout'
+import UserVehicles from './pages/user/UserVehicles'
+import UserBookings from './pages/user/UserBookings'
+import UserProfile from './pages/user/UserProfile'
+import UserFeedback from './pages/user/UserFeedback'
 
 
 
@@ -43,7 +47,12 @@ function App() {
         </Route>
         <Route path='/user/register' element={<Register/>}/>
         <Route path='/user/login' element={<UserLogin/>}/>
-        <Route path='/user' element={<UserLayout/>}></Route>
+        <Route path='/user' element={<UserLayout/>}>
+         <Route path='' element={<UserVehicles/>}/>
+         <Route path='/user/bookings' element={<UserBookings/>}/>
+         <Route path='/user/profile' element={<UserProfile/>}/>
+         <Route path='/user/feedback' element={<UserFeedback/>}/>
+        </Route>
       </Routes>
     </>
   )

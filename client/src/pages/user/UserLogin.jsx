@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, { useState } from 'react'
+import { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
@@ -17,6 +18,17 @@ function UserLogin() {
     }
     const navigate = useNavigate()
     axios.defaults.withCredentials = true
+    useEffect(() => {
+            axios.get('http://localhost:3000/auth/user')
+            .then((response) => {
+                if (response.data.status){
+                    navigate('/user')
+                } else {
+                  navigate('/user/login')
+                }
+            })
+            .catch((error) => {console.log(error)})
+        },[]) 
     const handleSubmit = (event) => {
         event.preventDefault()
         axios.post('http://localhost:3000/auth/loginUser',userDetails)

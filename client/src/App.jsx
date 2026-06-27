@@ -18,6 +18,7 @@ import Maintenance from './pages/Adminpages/Maintenance'
 import Track from './pages/Adminpages/Track'
 import Register from './pages/user/Register'
 import UserLogin from './pages/user/UserLogin'
+import UserLayout from './pages/user/UserLayout'
 
 
 
@@ -42,6 +43,7 @@ function App() {
         </Route>
         <Route path='/user/register' element={<Register/>}/>
         <Route path='/user/login' element={<UserLogin/>}/>
+        <Route path='/user' element={<UserLayout/>}></Route>
       </Routes>
     </>
   )

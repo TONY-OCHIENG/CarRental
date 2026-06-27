@@ -1,6 +1,7 @@
 import express from 'express'
-import { userAccountCreation } from '../controllers/Usercontrollers.js'
+import { loginuser, userAccountCreation } from '../controllers/Usercontrollers.js'
 
 const userRoutes = express.Router()
 userRoutes.post('/register',userAccountCreation)
+userRoutes.post('/loginUser',loginuser)
 export default userRoutes

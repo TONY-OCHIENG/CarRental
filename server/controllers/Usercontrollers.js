@@ -39,7 +39,7 @@ export const loginuser = (request,response) => {
                     return response.status(200).json({status: false, message: "wrong email or password"})
                 }
             } else {
-                return response.status(404).json({status: false, message: "user not found"})
+                return response.status(200).json({status: false, message: "user not found"})
             }
         })
         

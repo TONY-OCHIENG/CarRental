@@ -59,12 +59,18 @@ export const logoutUser = (request,response) => {
 }
 
 export const getvehicles = (request, response) => {
+    const { page , limit } = request.query
     try {
-        const sqlQuerry = "SELECT * FROM vehicles WHERE vehicleCondition = 'Good'"
-        conn.query(sqlQuerry,(error,result) => {
+        const offset = (page - 1) * limit
+        const sqlQuerry = "SELECT * FROM vehicles WHERE vehicleCondition = 'Good' LIMIT ? OFFSET ?"
+        conn.query(sqlQuerry,[+limit,+offset],(error,result) => {
             if (error) return response.status(200).json({status: false, message: error})
             if (result.length > 0) {
-                return response.status(200).json({status: true, result: result})
+                const totalVehicles = "SELECT count(*) as count FROM vehicles WHERE vehicleCondition = 'Good'"
+                conn.query(totalVehicles,(error,vehicles) => {
+                    if (error) return response.status(200).json({status: false, message: error})
+                    return response.status(200).json({status: true, result: {result: result, total: vehicles[0].count}})
+                })
             } else {
                 return response.status(200).json({status: true, message: "No available vehicle"})
             }

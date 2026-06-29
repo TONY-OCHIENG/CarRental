@@ -2,11 +2,13 @@ import React, { useEffect } from 'react'
 import { useState } from 'react'
 import axios from 'axios'
 import Pagination from '../../components/Pagination'
+import { useNavigate } from 'react-router-dom'
 function UserVehicles() {
     const [vehicles, setVehicles] = useState([])
     const [page, setPage] = useState(1)
     const [total, setTotal] = useState(0)
     const limit = 6
+    const navigate = useNavigate()
     useEffect(() => {
       const fetcVehicles = () => {
       axios.get(`http://localhost:3000/auth/vehiclesBooking?page=${page}&limit=${limit}`)
@@ -20,7 +22,9 @@ function UserVehicles() {
       }
       fetcVehicles()
     },[page])  
-    
+    const handleBooking = (id) => {
+      navigate(`/user/rent/${id}`)
+    }
   return (
     <div className='py-16 px-4 md:w-[90%] h-screen max-w-7xl mx-auto'>
       <div className='w-full mt-10 grid grid-cols-1 md:grid-cols-3 gap-2'>
@@ -32,7 +36,7 @@ function UserVehicles() {
                 <h3 className='text-gray-400 text-sm'>{item.vehicleCapacity} seats</h3>
                 <h3 className='text-gray-400 text-sm'>{item.vehicleType} </h3>
                 <h3 className='text-gray-400 text-sm'>{item.vehiclePrice} / day</h3>
-                <button className='py-1 mt-2  rounded-md cursor-pointer w-full font-bold text-white bg-red-600'>Book</button>
+                <button onClick={() => handleBooking(item.vehicle_id)} className='py-1 mt-2  rounded-md cursor-pointer w-full font-bold text-white bg-red-600'>Book</button>
             </div>
           )) : <h1 className='font-bold text-gray-800 text-xl text-center'>No available vehicle for booking</h1>
         }

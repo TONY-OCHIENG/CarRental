@@ -23,6 +23,7 @@ import UserVehicles from './pages/user/UserVehicles'
 import UserBookings from './pages/user/UserBookings'
 import UserProfile from './pages/user/UserProfile'
 import UserFeedback from './pages/user/UserFeedback'
+import BookingPage from './pages/user/BookingPage'
 
 
 
@@ -52,6 +53,7 @@ function App() {
          <Route path='/user/bookings' element={<UserBookings/>}/>
          <Route path='/user/profile' element={<UserProfile/>}/>
          <Route path='/user/feedback' element={<UserFeedback/>}/>
+         <Route path='/user/rent/:id' element={<BookingPage/>}/>
         </Route>
       </Routes>
     </>

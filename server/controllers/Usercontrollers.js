@@ -57,3 +57,20 @@ export const logoutUser = (request,response) => {
     response.clearCookie('token')
     return response.status(200).json({status: true, message:"logout successfully"})
 }
+
+export const getvehicles = (request, response) => {
+    try {
+        const sqlQuerry = "SELECT * FROM vehicles WHERE vehicleCondition = 'Good'"
+        conn.query(sqlQuerry,(error,result) => {
+            if (error) return response.status(200).json({status: false, message: error})
+            if (result.length > 0) {
+                return response.status(200).json({status: true, result: result})
+            } else {
+                return response.status(200).json({status: true, message: "No available vehicle"})
+            }
+        })
+    } catch (error) {
+        console.log(error)
+        return response.status(500).json({status: false, message: "Internal server error"})
+    }
+}

@@ -17,7 +17,6 @@ function Pagination({page,setPage,total,limit}) {
     }
     const handleClick = (data) => {
         setPage(data)
-        console.log(data)
     }    
 
     const renderPages = () => {

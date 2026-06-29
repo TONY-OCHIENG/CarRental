@@ -1,21 +1,29 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
 import axios from 'axios'
+import Pagination from '../../components/Pagination'
 function UserVehicles() {
     const [vehicles, setVehicles] = useState([])
+    const [page, setPage] = useState(1)
+    const [total, setTotal] = useState(0)
+    const limit = 6
     useEffect(() => {
-      axios.get('http://localhost:3000/auth/vehiclesBooking')
+      const fetcVehicles = () => {
+      axios.get(`http://localhost:3000/auth/vehiclesBooking?page=${page}&limit=${limit}`)
       .then((response) => {
         if (response.data.status) {
-          setVehicles(response.data.result)
+          setVehicles(response.data.result.result)
+          setTotal(response.data.result.total)
         }
       })
       .catch((error) => {console.log(error)})
-    },[])  
+      }
+      fetcVehicles()
+    },[page])  
     
   return (
-    <div className='py-16 px-4 md:w-[90%] h-[100vh] max-w-7xl mx-auto'>
-      <div className='w-full h-full mt-10 grid grid-cols-1 md:grid-cols-3 gap-2'>
+    <div className='py-16 px-4 md:w-[90%] h-screen max-w-7xl mx-auto'>
+      <div className='w-full mt-10 grid grid-cols-1 md:grid-cols-3 gap-2'>
         {
           vehicles.length > 0 ? vehicles.map((item) => (
             <div className='bg-white rounded-md shadow-md p-2 h-[60vh]'>
@@ -26,9 +34,12 @@ function UserVehicles() {
                 <h3 className='text-gray-400 text-sm'>{item.vehiclePrice} / day</h3>
                 <button className='py-1 mt-2  rounded-md cursor-pointer w-full font-bold text-white bg-red-600'>Book</button>
             </div>
-          )) : <h1>No available vehicle for booking</h1>
+          )) : <h1 className='font-bold text-gray-800 text-xl text-center'>No available vehicle for booking</h1>
         }
       </div>
+        <div className='flex justify-center items-center py-5'>
+         <Pagination page = {page} setPage = {setPage} total = {total} limit = {limit}/>
+        </div>  
     </div>
   )
 }

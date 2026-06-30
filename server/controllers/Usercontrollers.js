@@ -32,7 +32,8 @@ export const loginuser = (request,response) => {
                 const pass = comparepassword(password,result[0].password)
                 if (pass) {
                     const name = result[0].lastName
-                    const token = jwt.sign({name},process.env.SECRET_USER,{expiresIn:'2d'})
+                    const userID = result[0].user_id
+                    const token = jwt.sign({name,userID},process.env.SECRET_USER,{expiresIn:'2d'})
                     response.cookie('token',token)
                     return response.status(200).json({status: true, message:"login successfully"})
                 } else {
@@ -50,7 +51,7 @@ export const loginuser = (request,response) => {
 }
 
 export const userName = (request,response) => {
-    return response.status(200).json({status: true, name: request.name})
+    return response.status(200).json({status: true, name: {name:request.name, userID: request.userID}})
 }
 
 export const logoutUser = (request,response) => {

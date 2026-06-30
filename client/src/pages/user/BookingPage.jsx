@@ -1,13 +1,15 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 function BookingPage() {
     const [vehicle, setVehicle] = useState([])
     const [days, setDays] = useState({
         days:1,
+        userID:null
     })
     const { id } = useParams()
+    const navigate = useNavigate()
     useEffect(() => {
         const fetchSingleVehicle = () => {
             axios.get(`http://localhost:3000/auth/vehicleSingle/${id}`)
@@ -20,6 +22,17 @@ function BookingPage() {
         }
         fetchSingleVehicle()
     },[id])
+    useEffect(() => {
+         axios.get('http://localhost:3000/auth/user')
+        .then((response) => {
+            if (response.data.status){
+                setDays({days:days.days,userID:response.data.name.userID})
+            } else {
+              navigate('/user/login')
+            }
+        })
+        .catch((error) => {console.log(error)})
+    },[])
     const handleValueChange  = (event) => {
         const { name, value} = event.target
         setDays((prev) => ({
@@ -32,12 +45,13 @@ function BookingPage() {
     }
     const handleSubmit = (event) => {
         event.preventDefault()
-        axios.post('http://localhost:3000/auth/bookCar')
+        axios.post(`http://localhost:3000/auth/bookCar/${id}`,days)
         .then((response) => {
             console.log(response)
         })
         .catch((error) => {console.log(error)})
     }
+    console.log(days)
   return (
     <div className='py-16 max-w-7xl md:w-[90%] mx-auto px-4'>
         <div className='p-4 rounded-md bg-white shadow-md mt-4'>

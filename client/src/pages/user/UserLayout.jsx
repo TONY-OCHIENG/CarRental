@@ -22,7 +22,7 @@ function UserLayout() {
         .then((response) => {
             if (response.data.status){
                 setAuth(true)
-                setUserName(response.data.name)
+                setUserName(response.data.name.name)
             } else {
               setAuth(false)
               navigate('/user/login')

@@ -4,6 +4,9 @@ import { useParams } from 'react-router-dom'
 
 function BookingPage() {
     const [vehicle, setVehicle] = useState([])
+    const [days, setDays] = useState({
+        days:1
+    })
     const { id } = useParams()
     useEffect(() => {
         const fetchSingleVehicle = () => {
@@ -17,6 +20,14 @@ function BookingPage() {
         }
         fetchSingleVehicle()
     },[id])
+    const handleValueChange  = (event) => {
+        const { name, value} = event.target
+        setDays((prev) => ({
+            ...prev,
+            [name] : value
+        }))
+    }
+    
   return (
     <div className='py-16 max-w-7xl md:w-[90%] mx-auto px-4'>
         <div className='p-4 rounded-md bg-white shadow-md mt-4'>
@@ -29,7 +40,7 @@ function BookingPage() {
                              <h1 className='text-gray-600'>{item.vehiclePrice} / Day</h1>
                              <form action="" className='flex flex-col'>
                                 <label htmlFor="" className='text-gray-600'>Rental days</label>
-                                <input type="number" className='border p-2 rounded-md w-[40%] mt-1'/>
+                                <input type="number" name='days' onChange={handleValueChange} className='border p-2 rounded-md w-[40%] mt-1'/>
                                 <label htmlFor="" className='text-gray-600 mt-2'>Total payout</label>
                                 <input type="number" value={item.vehiclePrice} className='border p-2 rounded-md w-[40%]'/>
                              </form>

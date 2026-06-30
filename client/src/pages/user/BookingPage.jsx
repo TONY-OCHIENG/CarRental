@@ -27,7 +27,9 @@ function BookingPage() {
             [name] : value
         }))
     }
-    
+    const totalDays = (day) => {
+        return (days.days * day)
+    }
   return (
     <div className='py-16 max-w-7xl md:w-[90%] mx-auto px-4'>
         <div className='p-4 rounded-md bg-white shadow-md mt-4'>
@@ -42,7 +44,7 @@ function BookingPage() {
                                 <label htmlFor="" className='text-gray-600'>Rental days</label>
                                 <input type="number" name='days' onChange={handleValueChange} className='border p-2 rounded-md w-[40%] mt-1'/>
                                 <label htmlFor="" className='text-gray-600 mt-2'>Total payout</label>
-                                <input type="number" value={item.vehiclePrice} className='border p-2 rounded-md w-[40%]'/>
+                                <input type="number" value={totalDays(item.vehiclePrice)} className='border p-2 rounded-md w-[40%]'/>
                              </form>
                              <button className='py-2 px-12 bg-red-600 text-white cursor-pointer rounded-md cursor-pointer mt-4'>Proceed to payment</button>
                         </div>

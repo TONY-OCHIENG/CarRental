@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 function BookingPage() {
     const [vehicle, setVehicle] = useState([])
@@ -47,11 +48,12 @@ function BookingPage() {
         event.preventDefault()
         axios.post(`http://localhost:3000/auth/bookCar/${id}`,days)
         .then((response) => {
-            console.log(response)
+            if (response.data.status) {
+                toast.success(response.data.message)
+            }
         })
         .catch((error) => {console.log(error)})
     }
-    console.log(days)
   return (
     <div className='py-16 max-w-7xl md:w-[90%] mx-auto px-4'>
         <div className='p-4 rounded-md bg-white shadow-md mt-4'>

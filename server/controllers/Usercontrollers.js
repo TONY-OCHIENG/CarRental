@@ -101,8 +101,9 @@ export const getsingleVehicle = (request,response) => {
 }
 
 export const bookCar = (request,response) => {
-    const { days } = request.body
+    const { days, userID } = request.body
     const { id } = request.params
+    console.log(days, userID)
    
     try {
         const sqlQuerry = "SELECT vehiclePrice FROM vehicles WHERE vehicle_id = ?"

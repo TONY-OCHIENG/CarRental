@@ -98,3 +98,28 @@ export const getsingleVehicle = (request,response) => {
         return response.status(500).json({status: false, message: "Internal server error"})
     }
 }
+
+export const bookCar = (request,response) => {
+    const { days } = request.body
+    const { id } = request.params
+   
+    try {
+        const sqlQuerry = "SELECT vehiclePrice FROM vehicles WHERE vehicle_id = ?"
+        conn.query(sqlQuerry,[id],(error,result) => {
+            if (error) return response.status(200).json({status: false, message: error})
+            if (result.length) {
+               const price = result[0].vehiclePrice
+               const numberofDays = parseInt(days)
+               const vehiclePrice = parseInt(price)
+               const totalSum = (numberofDays * vehiclePrice)
+               console.log(totalSum)
+            } else{
+                return response.status(200).json({status: false, message: "Vehicle not found"})
+            }
+        })
+        
+    } catch (error) {
+        console.log(error)
+        return response.status(500).json({status: false, message: "Internal server error"})
+    }
+}

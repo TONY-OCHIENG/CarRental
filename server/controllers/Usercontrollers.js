@@ -113,8 +113,8 @@ export const bookCar = (request,response) => {
                const numberofDays = parseInt(days)
                const vehiclePrice = parseInt(price)
                const totalSum = (numberofDays * vehiclePrice)
-               const querySQL = "INSERT INTO bookings(user_id,vehicle_id,bookingPrice) VALUES(?,?,?)"
-               conn.query(querySQL,[userID,id,totalSum],(error, result) => {
+               const querySQL = "INSERT INTO bookings(user_id,vehicle_id,bookingPrice,bookingDays) VALUES(?,?,?,?)"
+               conn.query(querySQL,[userID,id,totalSum,days],(error, result) => {
                  if (error) return response.status(200).json({status: false, message: error})
                  return response.status(201).json({status: true, message: "Vehicle booked successfully"})
                })

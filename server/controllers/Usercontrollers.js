@@ -103,7 +103,6 @@ export const getsingleVehicle = (request,response) => {
 export const bookCar = (request,response) => {
     const { days, userID } = request.body
     const { id } = request.params
-    console.log(days, userID)
    
     try {
         const sqlQuerry = "SELECT vehiclePrice FROM vehicles WHERE vehicle_id = ?"
@@ -114,7 +113,11 @@ export const bookCar = (request,response) => {
                const numberofDays = parseInt(days)
                const vehiclePrice = parseInt(price)
                const totalSum = (numberofDays * vehiclePrice)
-               console.log(totalSum)
+               const querySQL = "INSERT INTO bookings(user_id,vehicle_id,bookingPrice) VALUES(?,?,?)"
+               conn.query(querySQL,[userID,id,totalSum],(error, result) => {
+                 if (error) return response.status(200).json({status: false, message: error})
+                 return response.status(201).json({status: true, message: "Vehicle booked successfully"})
+               })
             } else{
                 return response.status(200).json({status: false, message: "Vehicle not found"})
             }

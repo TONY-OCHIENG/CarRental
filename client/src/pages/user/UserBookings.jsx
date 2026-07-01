@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 
 function UserBookings() {
   const [userId, setUserId] = useState(null)
+  const [bookings,setBookings] = useState([])
   const navigate = useNavigate()
   useEffect(() => {
          axios.get('http://localhost:3000/auth/user')
@@ -18,6 +19,19 @@ function UserBookings() {
         })
         .catch((error) => {console.log(error)})
     },[])
+    useEffect(() => {
+      const fetchBookingDetails = () => {
+        axios.get(`http://localhost:3000/auth/getbookingDetail/${userId}`)
+        .then((response) => {
+           if (response.data.status) {
+            setBookings(response.data.result)
+           }
+        })
+        .catch((error) => {console.log(error)})
+      }
+      fetchBookingDetails()
+    },[userId])
+    console.log(bookings)
   return (
      <div className='py-16 px-4'>
       <h1 className='font-bold text-gray-600 mt-4 mb-4'>Bookings</h1>

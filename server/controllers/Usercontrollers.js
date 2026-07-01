@@ -67,7 +67,7 @@ export const getvehicles = (request, response) => {
         conn.query(sqlQuerry,[+limit,+offset],(error,result) => {
             if (error) return response.status(200).json({status: false, message: error})
             if (result.length > 0) {
-                const totalVehicles = "SELECT count(*) as count FROM vehicles WHERE vehicleCondition = 'Good'"
+                const totalVehicles = "SELECT count(*) as count FROM vehicles WHERE vehicleCondition = 'Good' AND vehicleBooking = 'Free'"
                 conn.query(totalVehicles,(error,vehicles) => {
                     if (error) return response.status(200).json({status: false, message: error})
                     return response.status(200).json({status: true, result: {result: result, total: vehicles[0].count}})

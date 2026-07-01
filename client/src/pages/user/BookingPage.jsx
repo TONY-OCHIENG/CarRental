@@ -50,6 +50,7 @@ function BookingPage() {
         .then((response) => {
             if (response.data.status) {
                 toast.success(response.data.message)
+                setTimeout(() => {navigate('/user/bookings')},3000)
                 axios.put(`http://localhost:3000/auth/updateBooking/${id}`)
                 .then((response) => {
                     console.log(response)

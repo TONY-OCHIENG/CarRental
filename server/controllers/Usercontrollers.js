@@ -146,7 +146,7 @@ export const updateBookingstatus = (request,response) => {
 export const bookingDetails = (request,response) => {
     const { id } = request.params
     try {
-        const sqlQuerry = "SELECT lastName, email, vehicleName, bookingDate, bookingDays, bookingPrice, bookingState, bookingStatus FROM bookings INNER JOIN users ON users.user_id = bookings.user_id INNER JOIN vehicles ON vehicles.vehicle_id = bookings.vehicle_id WHERE bookings.user_id = ?"
+        const sqlQuerry = "SELECT lastName,vehicles.vehicle_id, email, vehicleName, bookingDate, bookingDays, bookingPrice, bookingState, bookingStatus FROM bookings INNER JOIN users ON users.user_id = bookings.user_id INNER JOIN vehicles ON vehicles.vehicle_id = bookings.vehicle_id WHERE bookings.user_id = ?"
         conn.query(sqlQuerry,[id],(error, result) => {
             if (error) return response.status(200).json({status: false, message: error})
             if (result.length > 0) {

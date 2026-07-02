@@ -178,7 +178,7 @@ export const returnVehicle = (request, response) => {
 export const cancelBooking = (request, response) => {
     const { id } = request.params
     try {
-        const sqlQuerry = "UPDATE bookings SET bookingStatus = 'Cancel' WHERE vehicle_id = ?"
+        const sqlQuerry = "UPDATE bookings SET bookingStatus = 'Canceled' WHERE vehicle_id = ?"
         conn.query(sqlQuerry,[id],(error,result) => {
             if (error) return response.status(200).json({status: false, message: error})
             return response.status(200).json({status: true, message: "Booking canceled successfully"})

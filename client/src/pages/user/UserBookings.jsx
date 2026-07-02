@@ -3,6 +3,7 @@ import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { dateFormat } from './dateFormat'
 
 function UserBookings() {
   const [userId, setUserId] = useState(null)
@@ -51,7 +52,7 @@ function UserBookings() {
           {
             bookings.map((item) => (
                   <tr className='border even:bg-gray-100 bg-white '>
-                    <td className='p-2'>{item.bookingDate}</td>
+                    <td className='p-2'>{dateFormat(item.bookingDate)}</td>
                     <td>{item.email}</td>
                     <td>{item.vehicleName}</td>
                     <td>{item.bookingDays}</td>

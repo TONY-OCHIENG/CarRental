@@ -4,6 +4,7 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { dateFormat } from './dateFormat'
+import { toast } from 'react-toastify'
 
 function UserBookings() {
   const [userId, setUserId] = useState(null)
@@ -32,7 +33,17 @@ function UserBookings() {
       }
       fetchBookingDetails()
     },[userId])
-    console.log(bookings)
+    const handleReturn = (id) => {
+      axios.put(`http://localhost:3000/auth/returnVehicle/${id}`)
+      .then((response) => {
+        if (response.data.status) {
+          toast.success(response.data.message)
+        } else {
+          toast.error("An error occurred")
+        }
+      })
+      .catch((error) => {console.log(error)})
+    }
   return (
      <div className='py-16 px-4'>
       <h1 className='font-bold text-gray-600 mt-4 mb-4'>Bookings</h1>
@@ -59,9 +70,9 @@ function UserBookings() {
                     <td>{item.bookingPrice}</td>
                     <td>{item.bookingStatus}</td>
                     <td>{item.bookingState}</td>
-                    <td><button>Approve</button>
-                    <button>Cancel</button>
-                    <button>Overdue</button>
+                    <td className='flex gap-2 items-center'>
+                    <button className='bg-gray-500 mt-2 p-1 text-xs text-white rounded-md cursor-pointer'>Cancel</button>
+                    <button className='bg-red-600 mt-2 p-1 text-xs text-white rounded-md cursor-pointer' onClick={() => handleReturn(item.vehicle_id)}>Return</button>
                     </td>
                   </tr>    
             ))

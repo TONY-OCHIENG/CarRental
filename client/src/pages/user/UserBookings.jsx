@@ -39,28 +39,32 @@ function UserBookings() {
         <table className='w-full'>
           <thead className='text-left'>
             <th className='p-2'>Booking Date</th>
-            <th>Customer name</th>
             <th>Customer email</th>
             <th>Car model</th>
             <th>Plan</th>
             <th>Payment</th>
             <th>Status</th>
+            <th>State</th>
             <th>Action</th>
           </thead>
           <tbody>
-            <tr className='border even:bg-gray-100 bg-white '>
-              <td className='p-2'>12/6/2026</td>
-              <td>John Omondi</td>
-              <td>john@gmail.com</td>
-              <td>Lexus V8</td>
-              <td>4days</td>
-              <td>Online</td>
-              <td>Approved</td>
-              <td><button>Approve</button>
-              <button>Cancel</button>
-              <button>Overdue</button>
-              </td>
-            </tr>           
+          {
+            bookings.map((item) => (
+                  <tr className='border even:bg-gray-100 bg-white '>
+                    <td className='p-2'>{item.bookingDate}</td>
+                    <td>{item.email}</td>
+                    <td>{item.vehicleName}</td>
+                    <td>{item.bookingDays}</td>
+                    <td>{item.bookingPrice}</td>
+                    <td>{item.bookingStatus}</td>
+                    <td>{item.bookingState}</td>
+                    <td><button>Approve</button>
+                    <button>Cancel</button>
+                    <button>Overdue</button>
+                    </td>
+                  </tr>    
+            ))
+          }          
           </tbody>
         </table>
       </div>

@@ -83,7 +83,7 @@ function UserBookings() {
                     <td>{item.bookingStatus}</td>
                     <td>{item.bookingState}</td>
                     <td className='flex gap-2 items-center'>
-                    <button className='bg-gray-500 mt-2 p-1 text-xs text-white rounded-md cursor-pointer' onClick={() => handleCancelBooking(item.vehicle_id)}>Cancel</button>
+                    <button disabled={item.bookingState === 'Checkpoint'} className={`bg-gray-500 mt-2 p-1 text-xs text-white rounded-md ${item.bookingState === 'Checkpoint' ? 'disabled:opacity-40 cursor-not-allowed' : 'cursor-pointer'}`} onClick={() => handleCancelBooking(item.vehicle_id)}>Cancel</button>
                     <button className='bg-red-600 mt-2 p-1 text-xs text-white rounded-md cursor-pointer' onClick={() => handleReturn(item.vehicle_id)}>Return</button>
                     </td>
                   </tr>    

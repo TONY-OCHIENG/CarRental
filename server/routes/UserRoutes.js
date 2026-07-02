@@ -12,5 +12,5 @@ userRoutes.get('/vehicleSingle/:id',getsingleVehicle)
 userRoutes.post('/bookCar/:id',bookCar)
 userRoutes.put('/updateBooking/:id',updateBookingstatus)
 userRoutes.get('/getbookingDetail/:id',bookingDetails)
-userRoutes.get('/returnVehicle/:id',returnVehicle)
+userRoutes.put('/returnVehicle/:id',returnVehicle)
 export default userRoutes

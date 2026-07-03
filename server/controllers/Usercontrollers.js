@@ -197,7 +197,7 @@ export const createFeedback = (request,response) => {
 
     try {
         const sqlQuerry = "INSERT INTO feedback(firstName,lastName,email,feedback) Values(?,?,?,?)"
-        conn.query((sqlQuerry,[firstName,lastName,email,text]), (error, result) => {
+        conn.query(sqlQuerry,[firstName,lastName,email,text],(error, result) => {
             if (error) return response.status(200).json({status: false, message: error})
             return response.status(201).json({status: true, message: "Thankyou for your feedback"})
         })

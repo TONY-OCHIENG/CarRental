@@ -224,3 +224,18 @@ export const getsingleUser = (request,response) => {
         return response.status(500).json({status: false, message: "Internal server error"})
     }
 }
+
+export const edituser = (request,response) => {
+    const { id } = request.params
+    const { firstName, lastName, email} = request.body
+    try {
+        const sqlQuerry = "UPDATE users SET firstname = ?, lastName = ? , email = ? WHERE user_id = ? "
+        conn.query(sqlQuerry,[firstName,lastName,email,id],(error,result) => {
+            if (error) return response.status(200).json({status: false, message: error})
+            return response.status(200).json({status: true, message: "Updated successfully"})
+        })
+    } catch (error) {
+        console.log(error)
+        return response.status(500).json({status: false, message: "Internal server error"})
+    }
+} 

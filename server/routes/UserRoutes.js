@@ -1,5 +1,5 @@
 import express from 'express'
-import { bookCar, bookingDetails, cancelBooking, createFeedback, getsingleUser, getsingleVehicle, getvehicles, loginuser, logoutUser, returnVehicle, updateBookingstatus, userAccountCreation, userName } from '../controllers/Usercontrollers.js'
+import { bookCar, bookingDetails, cancelBooking, createFeedback, edituser, getsingleUser, getsingleVehicle, getvehicles, loginuser, logoutUser, returnVehicle, updateBookingstatus, userAccountCreation, userName } from '../controllers/Usercontrollers.js'
 import { userAuth } from '../middlewares/auth.js'
 
 const userRoutes = express.Router()
@@ -16,4 +16,5 @@ userRoutes.put('/returnVehicle/:id',returnVehicle)
 userRoutes.put('/cancelBooking/:id',cancelBooking)
 userRoutes.post('/feedback',createFeedback)
 userRoutes.get('/user/:id',getsingleUser)
+userRoutes.put('/edituser/:id',edituser)
 export default userRoutes

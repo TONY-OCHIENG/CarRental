@@ -188,3 +188,21 @@ export const cancelBooking = (request, response) => {
         return response.status(500).json({state: false, message: "Internal server error"})
     }
 }
+
+export const createFeedback = (request,response) => {
+    const {firstName, lastName, email, text} = request.body
+    if (firstName === "" || lastName === "" || email === "" || text === "") {
+        return response.status(200).json({status: false, message: "Please fill all fields"})
+    }
+
+    try {
+        const sqlQuerry = "INSERT INTO feedback(firstName,lastName,email,feedback) Values(?,?,?,?)"
+        conn.query((sqlQuerry,[firstName,lastName,email,text]), (error, result) => {
+            if (error) return response.status(200).json({status: false, message: error})
+            return response.status(201).json({status: true, message: "Thankyou for your feedback"})
+        })
+    } catch (error) {
+        console.log(error)
+        return response.status(500).json({status: false, message: "Internal server error"})
+    }
+}

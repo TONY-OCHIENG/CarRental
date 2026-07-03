@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 
 function UserProfile() {
   const [userId, setUserId] = useState(null)
+  const [user, setUserDetails] = useState([])
    useEffect(() => {
            axios.get('http://localhost:3000/auth/user')
           .then((response) => {
@@ -14,7 +15,15 @@ function UserProfile() {
           })
           .catch((error) => {console.log(error)})
       },[])  
-      console.log(userId)
+      useEffect(() => {
+        axios.get(`http://localhost:3000/auth/user/${userId}`)
+        .then((response) => {
+          if (response.data.status) {
+            setUserDetails(response.data.result)
+          }
+        })
+        .catch((error) => {console.log(error)})
+      },[userId])
   return (
     <div className='py-16 md:px-10 px-2 flex justify-center items-center w-full h-full'>
       <div className='w-full md:w-[50%] p-4 bg-white rounded-md shadow-md'>

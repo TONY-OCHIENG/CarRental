@@ -1,8 +1,22 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 
 function UserProfile() {
+  const [userId, setUserId] = useState(null)
+   useEffect(() => {
+           axios.get('http://localhost:3000/auth/user')
+          .then((response) => {
+              if (response.data.status){
+                  setUserId(response.data.name.userID)
+              } else {
+                navigate('/user/login')
+              }
+          })
+          .catch((error) => {console.log(error)})
+      },[])  
+      console.log(userId)
   return (
-    <div className='py-16 px-10 flex justify-center items-center w-full h-full'>
+    <div className='py-16 md:px-10 px-2 flex justify-center items-center w-full h-full'>
       <div className='w-full md:w-[50%] p-4 bg-white rounded-md shadow-md'>
         <form action="" className='w-full h-full'>
           <label htmlFor="firstName">First name</label>

@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import { toast } from 'react-toastify'
 
 function UserProfile() {
   const [userId, setUserId] = useState(null)
@@ -24,11 +25,22 @@ function UserProfile() {
         })
         .catch((error) => {console.log(error)})
       },[userId])
-      
+      const handleSubmit = (event) => {
+        event.preventDefault()
+        axios.put(`http://localhost:3000/auth/edituser/:${userId}`,user)
+        .then((response) => {
+          if (response.data.status) {
+            toast.success(response.data.message)
+          } else {
+            toast.error("An error occured")
+          }
+        })
+        .catch((error) => {console.log(error)})
+      }
   return (
     <div className='py-16 md:px-10 px-2 flex justify-center items-center w-full h-full'>
       <div className='w-full md:w-[50%] p-4 bg-white rounded-md shadow-md'>
-        <form action="" className='w-full h-full'>
+        <form action="" className='w-full h-full' onSubmit={handleSubmit}>
           <label htmlFor="firstName">First name</label>
           <input value={user.firstName} name='firstName' onChange={(event) => setUserDetails({...user, firstName: event.target.value})} type="text" className='w-full p-2 border rounded-md '/>
           <label htmlFor="firstName">Last name</label>

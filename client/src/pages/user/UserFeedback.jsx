@@ -36,7 +36,6 @@ function UserFeedback() {
     })
     .catch((error) => { console.log(error)})
   }
-  console.log(feedback)
   return (
     <div className='py-16 md:px-10 px-4 flex justify-center items-center'>
       <div className='mt-10 md:w-[50%] rounded-md w-full h-[75vh] p-4 bg-white max-md:overflow-x-auto'>

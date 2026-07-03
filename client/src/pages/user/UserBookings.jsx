@@ -59,7 +59,7 @@ function UserBookings() {
   return (
      <div className='py-16 px-4'>
       <h1 className='font-bold text-gray-600 mt-4 mb-4'>Bookings</h1>
-      <div className='max-md:w-full w-full h-[70vh] p-4 bg-white max-md:overflow-x-auto'>
+      <div className='max-md:w-full w-full h-[70vh] p-4 bg-white max-md:overflow-x-auto overflow-y-auto'>
         <table className='w-full'>
           <thead className='text-left'>
             <th className='p-2'>Booking Date</th>

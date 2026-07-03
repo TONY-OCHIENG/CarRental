@@ -206,3 +206,21 @@ export const createFeedback = (request,response) => {
         return response.status(500).json({status: false, message: "Internal server error"})
     }
 }
+
+export const getsingleUser = (request,response) => {
+    const { id } = request.params
+    try {
+        const sqlQuerry = "SELECT * FROM users WHERE user_id = ?"
+        conn.query(sqlQuerry,[id],(error,result) => {
+            if (error) return response.status(200).json({status: false, message: error})
+            if (result.length > 0) {
+                return response.status(200).json({status: true, result: result})
+            } else {
+                return response.status(200).json({statue: false, message: "user not found"})
+            }
+        })
+    } catch (error) {
+        console.log(error)
+        return response.status(500).json({status: false, message: "Internal server error"})
+    }
+}

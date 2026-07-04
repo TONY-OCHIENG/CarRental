@@ -165,3 +165,16 @@ export const maintenance = (request, response) => {
         return response.status(500).json({status: false, message:"Internal server error"})
     }
 }
+
+export const getBookings = (request, response) => {
+    try {
+        const sqlQuerry = "SELECT lastName, email, vehicleName, bookingDate, bookingDays, bookingPrice, bookingState, bookingStatus,vehicles.vehicle_id FROM bookings INNER JOIN users ON users.user_id = bookings.user_id INNER JOIN vehicles ON vehicles.vehicle_id = bookings.vehicle_id "
+        conn.query(sqlQuerry,(error,result) => {
+            if (error) return response.status(200).json({status: false, message: error})
+            
+        })
+    } catch (error) {
+        console.log(error)
+        return response.status(200).json({status: false, message: "Internal server error"})
+    }
+}

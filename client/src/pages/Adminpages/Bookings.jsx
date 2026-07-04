@@ -65,7 +65,7 @@ function Bookings() {
                     <td>{item.bookingState}</td>
                     <td className='flex gap-2'>
                     <button className={`bg-gray-500 mt-2 p-1 text-xs text-white rounded-md cursor-pointer`} onClick={() => handleCancelBooking(item.vehicle_id)}>Cancel</button>
-                    <button className='bg-red-600 mt-2 p-1 text-xs text-white rounded-md cursor-pointer'>Return</button>
+                    <button className='bg-red-600 mt-2 p-1 text-xs text-white rounded-md cursor-pointer' onClick={() => handleReturn(item.vehicle_id)}>Return</button>
                     <button className='bg-green-600 mt-2 p-1 text-xs text-white rounded-md cursor-pointer' onClick={() => handleApprove(item.vehicle_id)}>Approve</button>
                     </td>
                   </tr>    

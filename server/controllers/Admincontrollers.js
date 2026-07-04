@@ -184,7 +184,17 @@ export const getBookings = (request, response) => {
 export const approveBookings = (request,response) => {
     const { id } = request.params
     try {
-        const sqlQuerry = "UPDATE booking SET bookingStatus = 'Approved WHERE vehicle_id = ?"
+        const sqlQuerry = "UPDATE bookings SET bookingStatus = 'Approved' WHERE vehicle_id = ?"
+        conn.query(sqlQuerry,[id], (error,result) => {
+            if (error) return response.status(200).json({status: false, message: error})
+            if (result) {
+                const querySQL = "UPDATE bookings SET bookingState = 'Ongoing' WHERE vehicle_id = ?"
+                conn.query(querySQL,[id],(errors,results) => {
+                    if (error) return response.status(200).json({status: false, message: error})
+                    return response.status(200).json({status: true, message: "Booking approved successfully"})
+                })
+            }
+        })
     } catch (error) {
         console.log(error)
         return response.status(500).json({status: false, message: "Internal server error"})

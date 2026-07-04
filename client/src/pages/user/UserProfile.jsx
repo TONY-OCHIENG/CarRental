@@ -27,7 +27,7 @@ function UserProfile() {
       },[userId])
       const handleSubmit = (event) => {
         event.preventDefault()
-        axios.put(`http://localhost:3000/auth/edituser/:${userId}`,user)
+        axios.put(`http://localhost:3000/auth/edituser/${userId}`,user)
         .then((response) => {
           if (response.data.status) {
             toast.success(response.data.message)

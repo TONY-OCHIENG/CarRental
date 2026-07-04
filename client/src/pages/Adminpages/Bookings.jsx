@@ -1,6 +1,18 @@
 import React from 'react'
-
+import { useEffect } from 'react'
+import { useState } from 'react'
+import axios from 'axios'
 function Bookings() {
+  const [bookings, setBookings] = useState([])
+  useEffect(() => {
+    axios.get('http://localhost:3000/auth/userbookings')
+    .then((response) => {
+      if (response.data.status) {
+        setBookings(response.data.result)
+      }
+    })
+    .catch((error) => {console.log(error)})    
+  },[])
   return (
     <div className='py-16 px-4'>
       <h1 className='font-bold text-gray-600 mt-4 mb-4'>Bookings</h1>

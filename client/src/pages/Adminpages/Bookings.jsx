@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import axios from 'axios'
 import { dateFormat } from '../user/dateFormat'
+import { toast } from 'react-toastify'
 function Bookings() {
   const [bookings, setBookings] = useState([])
   useEffect(() => {
@@ -14,6 +15,16 @@ function Bookings() {
     })
     .catch((error) => {console.log(error)})    
   },[])
+  const handleApprove = (id) => {
+    axios.put(`http://localhost:3000/auth/approveBookings/${id}`)
+    .then((response) => {
+      if (response.data.status) {
+        toast.success(response.data.message)
+        setTimeout(() => {window.location.reload()},4000)
+      }
+    })
+    .catch((error) => { console.log(error)})
+  } 
   return (
     <div className='py-16 px-4'>
       <h1 className='font-bold text-gray-600 mt-4 mb-4'>Bookings</h1>
@@ -45,7 +56,7 @@ function Bookings() {
                     <td className='flex gap-2'>
                     <button disabled={item.bookingState === 'Checkpoint'} className={`bg-gray-500 mt-2 p-1 text-xs text-white rounded-md ${item.bookingState === 'Checkpoint' ? 'disabled:opacity-40 cursor-not-allowed' : 'cursor-pointer'}`} onClick={() => handleCancelBooking(item.vehicle_id)}>Cancel</button>
                     <button className='bg-red-600 mt-2 p-1 text-xs text-white rounded-md cursor-pointer'>Return</button>
-                    <button className='bg-green-600 mt-2 p-1 text-xs text-white rounded-md cursor-pointer'>Approve</button>
+                    <button className='bg-green-600 mt-2 p-1 text-xs text-white rounded-md cursor-pointer' onClick={() => handleApprove(item.vehicle_id)}>Approve</button>
                     </td>
                   </tr>    
               ))

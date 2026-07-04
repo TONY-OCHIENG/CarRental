@@ -202,7 +202,7 @@ export const approveBookings = (request,response) => {
 }
 
 export const returnbookedvehicle = (request,response) => {
-    const { id } = request.body
+    const { id } = request.params
     try {
         const sqlQuerry = "UPDATE bookings SET bookingState = 'Returned' WHERE vehicle_id = ?"
         conn.query(sqlQuerry,[id],(error,result) => {

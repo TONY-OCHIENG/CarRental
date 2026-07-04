@@ -200,3 +200,23 @@ export const approveBookings = (request,response) => {
         return response.status(500).json({status: false, message: "Internal server error"})
     }
 }
+
+export const returnbookedvehicle = (request,response) => {
+    const { id } = request.body
+    try {
+        const sqlQuerry = "UPDATE bookings SET bookingState = 'Returned' WHERE vehicle_id = ?"
+        conn.query(sqlQuerry,[id],(error,result) => {
+            if (error) return response.status(200).json({status: false, message: error})
+            if (result) {
+                const querySQL = "UPDATE vehicles SET vehicleBooking = 'Free' WHERE vehicle_id = ?"
+                conn.query(querySQL,[id],(errors,results) => {
+                    if (errors) return response.status(200).json({status: false, message: errors})
+                    return response.status(200).json({status: true, message: "Vehicle returned successfully"})
+                })
+            }
+        })
+    } catch (error) {
+        console.log(error)
+        return response.status(500).json({status: false, message: "Internal server error"})
+    }
+}

@@ -171,7 +171,9 @@ export const getBookings = (request, response) => {
         const sqlQuerry = "SELECT lastName, email, vehicleName, bookingDate, bookingDays, bookingPrice, bookingState, bookingStatus,vehicles.vehicle_id FROM bookings INNER JOIN users ON users.user_id = bookings.user_id INNER JOIN vehicles ON vehicles.vehicle_id = bookings.vehicle_id "
         conn.query(sqlQuerry,(error,result) => {
             if (error) return response.status(200).json({status: false, message: error})
-            
+            if (result.length > 0) {
+                return response.status(200).json({status: true, result: result})
+            }
         })
     } catch (error) {
         console.log(error)

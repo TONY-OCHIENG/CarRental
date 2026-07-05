@@ -40,6 +40,7 @@ function Bookings() {
     .then((response) => {
       if (response.data.status) {
         toast.success(response.data.message)
+        setTimeout(() => {window.location.reload()},4000)
       }
     })
     .catch((error) => {

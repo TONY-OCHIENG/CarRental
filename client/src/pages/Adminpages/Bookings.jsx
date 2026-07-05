@@ -35,6 +35,17 @@ function Bookings() {
     })
     .catch((error) => {console.log(error)})
   }
+  const handleCancel = (id) => {
+    axios.put(`http://localhost:3000/auth/canceledBooking/${id}`)
+    .then((response) => {
+      if (response.data.status) {
+        toast.success(response.data.message)
+      }
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+  }
   return (
     <div className='py-16 px-4'>
       <h1 className='font-bold text-gray-600 mt-4 mb-4'>Bookings</h1>
@@ -64,7 +75,7 @@ function Bookings() {
                     <td>{item.bookingStatus}</td>
                     <td>{item.bookingState}</td>
                     <td className='flex gap-2'>
-                    <button className={`bg-gray-500 mt-2 p-1 text-xs text-white rounded-md cursor-pointer`} onClick={() => handleCancelBooking(item.vehicle_id)}>Cancel</button>
+                    <button className={`bg-gray-500 mt-2 p-1 text-xs text-white rounded-md cursor-pointer`} onClick={() => handleCancel(item.vehicle_id)}>Cancel</button>
                     <button className='bg-red-600 mt-2 p-1 text-xs text-white rounded-md cursor-pointer' onClick={() => handleReturn(item.vehicle_id)}>Return</button>
                     <button className='bg-green-600 mt-2 p-1 text-xs text-white rounded-md cursor-pointer' onClick={() => handleApprove(item.vehicle_id)}>Approve</button>
                     </td>

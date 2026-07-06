@@ -20,5 +20,5 @@ adminRoute.put('/approveBookings/:id', approveBookings)
 adminRoute.put('/returnBookedvehicle/:id',returnbookedvehicle)
 adminRoute.put('/canceledBooking/:id',cancelBooking)
 adminRoute.get('/availableVehicles',availableVehicles)
-adminRoute.get('rentedvehicles',rentedVehicles)
+adminRoute.get('/rentedvehicles',rentedVehiclesg)
 export default adminRoute

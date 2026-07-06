@@ -240,7 +240,7 @@ export const availableVehicles = (request, response) => {
         const sqlQuerry = "SELECT count(*) as count FROM vehicles WHERE vehicleCondition = 'Good' AND  vehicleBooking = 'Free'"
         conn.query(sqlQuerry,(error,result) => {
             if (error) return response.status(200).json({status: false, message: error})
-            return response.status(200).json({status: true, result: result})
+            return response.status(200).json({status: true, result: result[0].count})
         })
         
     } catch (error) {

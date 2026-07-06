@@ -1,5 +1,5 @@
 import express from 'express'
-import { addVehicles, approveBookings, availableVehicles, cancelBooking, checkpointVehicles, deleteVehicle, editVehicle, getAllRepairs, getAllVehicles, getBookings, getsingleVehicle, loginUserAdmin, logoutAdmin, maintenance, rentedVehicles, repairVehicles, returnbookedvehicle, userRole } from '../controllers/Admincontrollers.js'
+import { addVehicles, approveBookings, availableVehicles, cancelBooking, checkpointVehicles, deleteVehicle, editVehicle, getAllRepairs, getAllVehicles, getBookings, getsingleVehicle, loginUserAdmin, logoutAdmin, maintenance, overduevehicles, rentedVehicles, repairVehicles, returnbookedvehicle, userRole } from '../controllers/Admincontrollers.js'
 import { auth } from '../middlewares/auth.js'
 import { upload } from '../configs/imageupload.js'
 
@@ -22,4 +22,5 @@ adminRoute.put('/canceledBooking/:id',cancelBooking)
 adminRoute.get('/availableVehicles',availableVehicles)
 adminRoute.get('/rentedvehicles',rentedVehicles)
 adminRoute.get('/checkpointvehicle',checkpointVehicles)
+adminRoute.get('/overdue',overduevehicles)
 export default adminRoute

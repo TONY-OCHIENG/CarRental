@@ -20,6 +20,7 @@ function Dashboard() {
   const [rent,setRent] = useState(null)
   const [check, setCheck] = useState(null)
   const [overdue, setOverdue] = useState(null)
+  const [maintenance,setMaintenance] = useState(null)
   let reminderValues = JSON.parse(localStorage.getItem('reminder')) || []
   const handleSubmit = (event) => {
     const { name } = value
@@ -66,6 +67,14 @@ function Dashboard() {
       }
     })
     .catch((error) => {console.log(error)})
+     axios.get('http://localhost:3000/auth/countMaintenance')
+    .then((response) => {
+      if (response.data.status) {
+          setMaintenance(response.data.result)
+      }
+    })
+    .catch((error) => {console.log(error)})
+    
   },[])
   return (
     <div className='h-full w-full py-20 '>
@@ -108,7 +117,7 @@ function Dashboard() {
           <h1 className='text-center font-extrabold'> Maintenance</h1>
            <div className='flex items-center ml-5'>
             <Bolt className='h-8 w-8 text-red-600'/>
-            <h1 className='text-md ml-5 text-gray-600'>2 units</h1>
+            <h1 className='text-md ml-5 text-gray-600'>{maintenance} units</h1>
           </div>
          </div>
           <div className='rounded-md p-4 shadow-md cursor-pointer hover:-translate-y-0.5 transition-all duration-300

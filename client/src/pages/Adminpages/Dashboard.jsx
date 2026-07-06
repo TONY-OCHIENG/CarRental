@@ -21,6 +21,7 @@ function Dashboard() {
   const [check, setCheck] = useState(null)
   const [overdue, setOverdue] = useState(null)
   const [maintenance,setMaintenance] = useState(null)
+  const [toatalEarnings, setTotalEarnings] = useState(null)
   let reminderValues = JSON.parse(localStorage.getItem('reminder')) || []
   const handleSubmit = (event) => {
     const { name } = value
@@ -71,6 +72,13 @@ function Dashboard() {
     .then((response) => {
       if (response.data.status) {
           setMaintenance(response.data.result)
+      }
+    })
+    .catch((error) => {console.log(error)})
+     axios.get('http://localhost:3000/auth/totalprice')
+    .then((response) => {
+      if (response.data.status) {
+          setTotalEarnings(response.data.result)
       }
     })
     .catch((error) => {console.log(error)})
@@ -125,7 +133,7 @@ function Dashboard() {
           <h1 className='text-center font-extrabold'>Total Earnings</h1>
            <div className='flex items-center ml-5'>
             <BadgeDollarSign className='h-8 w-8 text-red-600'/>
-            <h1 className='text-md ml-5 text-gray-600'>$ 300</h1>
+            <h1 className='text-md ml-5 text-gray-600'>KSH {toatalEarnings}</h1>
           </div>
          </div>
         </div>

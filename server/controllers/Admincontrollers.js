@@ -303,7 +303,7 @@ export const countMaintenance = (request, response) => {
 
 export const totalEarnings = (request, response) => {
     try {
-        const sqlQuerry = "SELECT SUM(bookingPrice) as totalPrice FROM bookings WHERE bookingStatus = 'Approved' AND bookingState = 'Ongoing'"
+        const sqlQuerry = "SELECT SUM(bookingPrice) as totalPrice FROM bookings WHERE bookingStatus = 'Approved' AND bookingState = 'Ongoing' OR 'Overdue'"
         conn.query(sqlQuerry,(error,result) => {
             if (error) return response.status(200).json({status: false, message: error})
             return response.status(200).json({status: true, result: result[0].totalPrice})

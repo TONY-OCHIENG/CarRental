@@ -261,3 +261,16 @@ export const rentedVehicles = (request,response) => {
         return response.status(500).json({status: false, message: "Internal server error"})
     }
 }
+
+export const checkpointVehicles = (request,response) => {
+    try {
+        const sqlQuerry = "SELECT count(*) as count FROM bookings WHERE bookingStatus = 'Approved' AND bookingState = 'Checkpoint'"
+        conn.query(sqlQuerry,(error,result) => {
+            if (error) return response.status(200).json({status: false, message: error})
+            return response.status(200).json({status: true, result: result[0].count})
+        })
+    } catch (error) {
+        console.log(error)
+        return response.status(500).json({status: false, message: "Internal server error"})
+    }
+}

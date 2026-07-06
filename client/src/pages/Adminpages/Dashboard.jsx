@@ -1,3 +1,4 @@
+import axios from 'axios'
 import { BadgeDollarSign, Bolt, CarFront, CarIcon, ClockAlert, Delete, DollarSign, RotateCcw } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 import { Outlet } from 'react-router-dom'
@@ -15,6 +16,7 @@ function Dashboard() {
     }))
     
   }
+  const [availableVehicles, setAvailableVehicles] = useState(null)
   let reminderValues = JSON.parse(localStorage.getItem('reminder')) || []
   const handleSubmit = (event) => {
     const { name } = value
@@ -32,6 +34,14 @@ function Dashboard() {
     localStorage.setItem('reminder',JSON.stringify(reminderValues))
     window.location.reload()
   }
+  useEffect(() => {
+    axios.get('http://localhost:3000/auth/availableVehicles')
+    .then((response) => {
+      if (response.data.status) {
+          setAvailableVehicles(response.data.result)
+      }
+    })
+  },[])
   return (
     <div className='h-full w-full py-20 '>
       <div className='max-w-7xl md:max-w-[90%] px-2 mx-auto'>
@@ -41,7 +51,7 @@ function Dashboard() {
           <h1 className='text-center font-extrabold'>Available Vehicles</h1>
           <div className='flex items-center ml-5'>
             <CarFront className='h-8 w-8 text-red-600'/>
-            <h1 className='text-md ml-5 text-gray-600'>23 units</h1>
+            <h1 className='text-md ml-5 text-gray-600'>{availableVehicles} units</h1>
           </div>
          </div>
           <div className='rounded-md p-4 shadow-md cursor-pointer hover:-translate-y-0.5 transition-all duration-300

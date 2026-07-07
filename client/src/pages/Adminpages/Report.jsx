@@ -1,6 +1,22 @@
+import axios from 'axios'
 import React from 'react'
+import { useEffect } from 'react'
+import { useState } from 'react'
+import { Chart as Chartjs} from 'chart.js/auto'
+import { Doughnut } from 'react-chartjs-2'
 
 function Report() {
+  const [category,setCategory] = useState([])
+  useEffect(() => {
+    axios.get('http://localhost:3000/auth/vehiclecategory')
+    .then((response) => {
+      if (response.data.status) {
+        setCategory(response.data.result)
+      }
+    })
+    .catch((error) => { console.log(error)})
+  },[])
+  console.log(category)
   return (
     <div className='py-10 px-4 w-full h-full'>
       <div className='mt-8 w-full h-full rounded-md mx-auto flex justify-center items-center flex-col'>

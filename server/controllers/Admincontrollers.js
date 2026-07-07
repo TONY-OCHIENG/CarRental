@@ -339,3 +339,16 @@ export const vehicleCategory = (request,response) => {
         return response.status(500).json({status: false, message: "internal server error"})
     }
 }
+
+export const bookedvehicleCategory = (request,response) => {
+    try {
+        const sqlQuerry = "SELECT vehicles.vehicleType, COUNT(vehicles.vehicleType) AS totalBooked FROM bookings INNER JOIN vehicles ON vehicles.vehicle_id = bookings.vehicle_id WHERE bookings.bookingStatus = 'Approved'  AND (bookings.bookingState = 'Ongoing' OR bookings.bookingState = 'Overdue') GROUP BY vehicles.vehicleType"
+        conn.query(sqlQuerry,(error,result) => {
+            if (error) return response.status(200).json({status: false, message: error})
+            return response.status(200).json({status: true, result: result})
+        })
+    } catch (error) {
+        console.log(error)
+        return response.status(500).json({status: false, message: "Internal server error"})
+    }
+}

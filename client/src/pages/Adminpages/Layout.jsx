@@ -33,7 +33,6 @@ function Layout() {
       {name:"Bookings",path:"/admin/bookings", icon: CalendarCheck},
       {name:"Payments",path:"/admin/payment", icon: CreditCard},
       {name:"Reports",path:"/admin/report", icon: FileText},
-      {name:"Message",path:"/admin/message", icon: MessageSquare},
       {name:"Feedbacks",path:"/admin/feedback", icon: MessageSquareQuote},
       {name:"Maintenance",path:"/admin/maintenance", icon: Wrench},
       {name:"Track vehicle",path:"/admin/track", icon: Locate},

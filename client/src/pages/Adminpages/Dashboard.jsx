@@ -141,7 +141,7 @@ function Dashboard() {
         </div>
          <div className='mt-10 grid grid-cols-1 md:grid-cols-2 w-full gap-2'>
           <div className='flex flex-col'>
-            <h1 className='text-gray-900 font-bold'>Vehicle Status</h1>
+            <h1 className='text-gray-900 font-bold'>Rental Status</h1>
             <div className='p-4 h-[350px] md:w-[500px] w-full bg-white rounded-md shadow-md flex justify-center items-center'>
               <Doughnut className='w-full' data = {{
                     datasets: [{

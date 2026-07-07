@@ -4,8 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import { Chart as Chartjs} from 'chart.js/auto'
 import { Doughnut } from 'react-chartjs-2'
-defaults.maintainAspectRatio = false
-defaults.responsive = true
+
 function Dashboard() {
   const [value, setValue] = useState({
     name:''

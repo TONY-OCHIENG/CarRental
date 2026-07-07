@@ -13,6 +13,7 @@ function Layout() {
         axios.get('http://localhost:3000/auth/role')
         .then((response) => {
             if (response.data.status) {
+               
                 setAuth(true)
                 setRole(response.data.role)   
             } else {

@@ -10,6 +10,7 @@ function Payments() {
   useEffect(() => {
     axios.get(`http://localhost:3000/auth/vehicleTypes`)
     .then((response) => {
+      console.log(response)
       if (response.data.status) {
         setVehicle(response.data.result)
       }
@@ -17,7 +18,7 @@ function Payments() {
     .catch((error) => {console.log(error)})
   },[])
 
-  console.log(vehicleType.map((item) => item.vehicleType))
+  console.log(vehicleType)
   return (
     <div className='py-16 max-w-7xl w-full md:w-[90%] mx-auto p-4 h-[80vh] mt-10'>
       <div className='bg-white rounded-md md:h-[550px] w-full h-full'>
@@ -43,7 +44,7 @@ function Payments() {
                         }],
 
                       // These labels appear in the legend and in the tooltips when hovering different arcs
-                      labels: vehicleType.map((item) => item.vehicleType)
+                      labels: ["SUV","Sedun","Hatchback"]
           }}/>  
       </div>
     </div>

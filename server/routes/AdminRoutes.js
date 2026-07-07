@@ -27,5 +27,5 @@ adminRoute.get('/countMaintenance',countMaintenance)
 adminRoute.get('/totalprice',totalEarnings)
 adminRoute.get('/vehicleTypes',vehicleTypes)
 adminRoute.get('/vehiclecategory',vehicleCategory)
-adminRoute.get('vehiclebookedcategories',bookedvehicleCategory)
+adminRoute.get('/vehiclebookedcategories',bookedvehicleCategory)
 export default adminRoute

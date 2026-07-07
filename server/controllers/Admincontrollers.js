@@ -326,3 +326,16 @@ export const vehicleTypes = (request,response) => {
         return response.status(500).json({status: false, message: "Internal server error"})
     }
 }
+
+export const vehicleCategory = (request,response) => {
+    try {
+        const sqlQuerry = "SELECT vehicleType, COUNT(*) AS total FROM vehicles GROUP BY vehicleType"
+        conn.query(sqlQuerry,(error,result) => {
+            if (error) return response.status(200).json({status: false, message: error})
+            return response.status(200).json({status: true, result: result})
+        })
+    } catch (error) {
+        console.log(error)
+        return response.status(500).json({status: false, message: "internal server error"})
+    }
+}

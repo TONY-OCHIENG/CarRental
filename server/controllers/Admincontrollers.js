@@ -303,7 +303,7 @@ export const countMaintenance = (request, response) => {
 
 export const totalEarnings = (request, response) => {
     try {
-        const sqlQuerry = "SELECT SUM(bookingPrice) as totalPrice FROM bookings WHERE bookingStatus = 'Approved' AND bookingState = 'Ongoing' OR 'Overdue'"
+        const sqlQuerry = "SELECT SUM(bookingPrice) as totalPrice FROM bookings WHERE bookingStatus = 'Approved' AND bookingState = 'Ongoing' OR bookingState = 'Overdue' OR bookingState = 'Returned'"
         conn.query(sqlQuerry,(error,result) => {
             if (error) return response.status(200).json({status: false, message: error})
             return response.status(200).json({status: true, result: result[0].totalPrice})
@@ -316,7 +316,7 @@ export const totalEarnings = (request, response) => {
 
 export const vehicleTypes = (request,response) => {
     try {
-        const sqlQuerry = "SELECT vehicles.vehicleType,SUM(bookings.bookingPrice) AS totalPrice FROM bookings INNER JOIN vehicles ON vehicles.vehicle_id = bookings.vehicle_id WHERE bookings.bookingStatus = 'Approved' AND (bookings.bookingState = 'Ongoing' OR bookings.bookingState = 'Overdue') GROUP BY vehicles.vehicleType"
+        const sqlQuerry = "SELECT vehicles.vehicleType,SUM(bookings.bookingPrice) AS totalPrice FROM bookings INNER JOIN vehicles ON vehicles.vehicle_id = bookings.vehicle_id WHERE bookings.bookingStatus = 'Approved' AND (bookings.bookingState = 'Ongoing' OR bookings.bookingState = 'Overdue' OR bookings.bookingState = 'Returned') GROUP BY vehicles.vehicleType"
         conn.query(sqlQuerry,(error,result) => {
             if (error) return response.status(200).json({status: false, message: error})
             return response.status(200).json({status: true, result: result})

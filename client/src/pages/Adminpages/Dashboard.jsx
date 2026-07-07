@@ -4,7 +4,8 @@ import React, { useEffect, useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import { Chart as Chartjs} from 'chart.js/auto'
 import { Doughnut } from 'react-chartjs-2'
-
+defaults.maintainAspectRatio = false
+defaults.responsive = true
 function Dashboard() {
   const [value, setValue] = useState({
     name:''
@@ -146,7 +147,7 @@ function Dashboard() {
               <Doughnut className='w-full' data = {{
                     datasets: [{
                         data: [availableVehicles, rent, check,overdue]
-                    }],
+                      }],
 
                     // These labels appear in the legend and in the tooltips when hovering different arcs
                     labels: [
@@ -154,7 +155,7 @@ function Dashboard() {
                         'Rent',
                         'Checkpoint',
                         'Overdue'
-                    ]
+                    ],
                 }}/>                     
             </div>
           </div>

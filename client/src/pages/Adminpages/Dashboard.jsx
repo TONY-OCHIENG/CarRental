@@ -2,6 +2,8 @@ import axios from 'axios'
 import { BadgeDollarSign, Bolt, CarFront, CarIcon, ClockAlert, Delete, DollarSign, RotateCcw } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 import { Outlet } from 'react-router-dom'
+import { Chart as Chartjs} from 'chart.js/auto'
+import { Doughnut } from 'react-chartjs-2'
 
 function Dashboard() {
   const [value, setValue] = useState({
@@ -139,8 +141,22 @@ function Dashboard() {
         </div>
          <div className='mt-10 grid grid-cols-1 md:grid-cols-2 w-full gap-2'>
           <div className='flex flex-col'>
-            <h1 className='text-gray-900 font-bold'>Rent Status</h1>
-            <div className='p-4 h-[350px] md:w-[500px] w-full bg-white rounded-md shadow-md'></div>
+            <h1 className='text-gray-900 font-bold'>Vehicle Status</h1>
+            <div className='p-4 h-[350px] md:w-[500px] w-full bg-white rounded-md shadow-md flex justify-center items-center'>
+              <Doughnut className='w-full' data = {{
+                    datasets: [{
+                        data: [availableVehicles, rent, check,overdue]
+                    }],
+
+                    // These labels appear in the legend and in the tooltips when hovering different arcs
+                    labels: [
+                        'Available',
+                        'Rent',
+                        'Checkpoint',
+                        'Overdue'
+                    ]
+                }}/>                     
+            </div>
           </div>
           <div className='flex flex-col'>
             <h1 className='text-gray-900 font-bold'>Reminders</h1>

@@ -22,6 +22,7 @@ import UserBookings from './pages/user/UserBookings'
 import UserProfile from './pages/user/UserProfile'
 import UserFeedback from './pages/user/UserFeedback'
 import BookingPage from './pages/user/BookingPage'
+import HeroPage from './HeroPage'
 
 
 
@@ -30,6 +31,7 @@ function App() {
   return (
     <> 
       <Routes>
+        <Route path='/' element={<HeroPage/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/admin' element={<Layout/>}>
           <Route path='' element={<Dashboard/>}/>

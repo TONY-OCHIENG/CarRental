@@ -74,7 +74,7 @@ function Bookings() {
             <th>Action</th>
           </thead>
           <tbody>
-            {
+            { bookings.length > 0 ?
               bookings.map((item) => (
                    <tr className='border even:bg-gray-100 bg-white '>
                     <td className='p-2'>{dateFormat(item.bookingDate)}</td>
@@ -89,10 +89,12 @@ function Bookings() {
                     <button className={`bg-gray-500 mt-2 p-1 text-xs text-white rounded-md cursor-pointer`} onClick={() => handleCancel(item.vehicle_id)}>Cancel</button>
                     <button className='bg-red-600 mt-2 p-1 text-xs text-white rounded-md cursor-pointer' onClick={() => handleReturn(item.vehicle_id)}>Return</button>
                     <button className='bg-green-600 mt-2 p-1 text-xs text-white rounded-md cursor-pointer' onClick={() => handleApprove(item.vehicle_id)}>Approve</button>
-                    <button className='bg-pink-400 mt-2 p-1 text-xs text-white rounded-md cursor-pointer' onClick={() => handleDeleteBooking(item.booking_id)}>Delete</button>
+                    <button className='bg-red-900 mt-2 p-1 text-xs text-white rounded-md cursor-pointer' onClick={() => handleDeleteBooking(item.booking_id)}>Delete</button>
                     </td>
                   </tr>    
-              ))
+              )) : <div className='p-2' >
+                      <h1 className='font-bold text-2xl text-gray-600'>There are no bookings made</h1>
+                  </div>
             }       
           </tbody>
         </table>

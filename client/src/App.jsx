@@ -14,7 +14,6 @@ import Payments from './pages/Adminpages/Payments'
 import Report from './pages/Adminpages/Report'
 import Feedback from './pages/Adminpages/Feedback'
 import Maintenance from './pages/Adminpages/Maintenance'
-import Track from './pages/Adminpages/Track'
 import Register from './pages/user/Register'
 import UserLogin from './pages/user/UserLogin'
 import UserLayout from './pages/user/UserLayout'
@@ -42,7 +41,6 @@ function App() {
           <Route path='/admin/report' element={<Report/>}/>          
           <Route path='/admin/feedback' element={<Feedback/>}/>
           <Route path='/admin/maintenance' element={<Maintenance/>}/>
-          <Route path='/admin/track' element={<Track/>}/>
         </Route>
         <Route path='/user/register' element={<Register/>}/>
         <Route path='/user/login' element={<UserLogin/>}/>

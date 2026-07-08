@@ -35,7 +35,6 @@ function Layout() {
       {name:"Reports",path:"/admin/report", icon: FileText},
       {name:"Feedbacks",path:"/admin/feedback", icon: MessageSquareQuote},
       {name:"Maintenance",path:"/admin/maintenance", icon: Wrench},
-      {name:"Track vehicle",path:"/admin/track", icon: Locate},
     ]
     const handleLogout = () => {
       axios.get('http://localhost:3000/auth/logoutAdmin')

@@ -18,12 +18,23 @@ function Feedback() {
       <div className='mx-auto md:w-[90%] w-full bg-white rounded-md p-2 mt-4'>
         <table className='w-full'>
           <thead className='text-left'>
-            <th>First name</th>
+            <th className='p-2'>First name</th>
             <th>Last name</th>
             <th>Email</th>
             <th>Feedback</th>
           </thead>
-          <tbody></tbody>
+          <tbody>
+            {
+              feedBack.map((item) => (
+                <tr className='border even:bg-gray-100 text-gray-600'>
+                  <td className='p-2'>{item.firstName}</td>
+                  <td>{item.lastName}</td>
+                  <td>{item.email}</td>
+                  <td className='flex-wrap w-[700px]'>{item.feedback}</td>
+                </tr>
+              ))
+            }
+          </tbody>
         </table>
       </div>
     </div>

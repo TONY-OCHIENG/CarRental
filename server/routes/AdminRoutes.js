@@ -29,5 +29,5 @@ adminRoute.get('/vehicleTypes',vehicleTypes)
 adminRoute.get('/vehiclecategory',vehicleCategory)
 adminRoute.get('/vehiclebookedcategories',bookedvehicleCategory)
 adminRoute.get('/feedback',feedbacks)
-adminRoute.delete('deleteBooking/:id',deleteBookings)
+adminRoute.delete('/deleteBooking/:id',deleteBookings)
 export default adminRoute

@@ -368,6 +368,7 @@ export const feedbacks = (request,response) => {
 
 export const deleteBookings = (request,response) => {
     const { id } = request.params
+    console.log(id)
     try {
         const sqlQuerry = "DELETE FROM bookings WHERE booking_id = ?"
         conn.query(sqlQuerry,[id], (error, result) => {

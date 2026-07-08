@@ -1,5 +1,5 @@
 import express from 'express'
-import { addVehicles, approveBookings, availableVehicles, bookedvehicleCategory, cancelBooking, checkpointVehicles, countMaintenance, deleteVehicle, editVehicle, feedbacks, getAllRepairs, getAllVehicles, getBookings, getsingleVehicle, loginUserAdmin, logoutAdmin, maintenance, overduevehicles, rentedVehicles, repairVehicles, returnbookedvehicle, totalEarnings, userRole, vehicleCategory, vehicleTypes } from '../controllers/Admincontrollers.js'
+import { addVehicles, approveBookings, availableVehicles, bookedvehicleCategory, cancelBooking, checkpointVehicles, countMaintenance, deleteBookings, deleteVehicle, editVehicle, feedbacks, getAllRepairs, getAllVehicles, getBookings, getsingleVehicle, loginUserAdmin, logoutAdmin, maintenance, overduevehicles, rentedVehicles, repairVehicles, returnbookedvehicle, totalEarnings, userRole, vehicleCategory, vehicleTypes } from '../controllers/Admincontrollers.js'
 import { auth } from '../middlewares/auth.js'
 import { upload } from '../configs/imageupload.js'
 
@@ -29,4 +29,5 @@ adminRoute.get('/vehicleTypes',vehicleTypes)
 adminRoute.get('/vehiclecategory',vehicleCategory)
 adminRoute.get('/vehiclebookedcategories',bookedvehicleCategory)
 adminRoute.get('/feedback',feedbacks)
+adminRoute.delete('deleteBooking/:id',deleteBookings)
 export default adminRoute

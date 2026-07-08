@@ -365,3 +365,17 @@ export const feedbacks = (request,response) => {
         return response.status(200).json({status: false, message: "Internal server error"})
     }
 }
+
+export const deleteBookings = (request,response) => {
+    const { id } = request.params
+    try {
+        const sqlQuerry = "DELETE FROM bookings WHERE booking_id = ?"
+        conn.query(sqlQuerry,[id], (error, result) => {
+            if (error) return response.status(200).json({status: false, message: error})
+            return response.status(200).json({status: true, message: "Bookings deleted successfully"})
+        })
+    } catch (error) {
+        console.log(error)
+        return response.status(200).json({status:false, message: "Internal server error"})
+    }
+}

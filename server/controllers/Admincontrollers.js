@@ -352,3 +352,16 @@ export const bookedvehicleCategory = (request,response) => {
         return response.status(500).json({status: false, message: "Internal server error"})
     }
 }
+
+export const feedbacks = (request,response) => {
+    try {
+        const sqlQuerry = "SELECT * FROM feedback"
+        conn.query(sqlQuerry,(error,result) => {
+            if (error) return response.status(200).json({status: false, message: error})
+            return response.status(200).json({status: true, result: result})
+        })
+    } catch (error) {
+        console.log(error)
+        return response.status(200).json({status: false, message: "Internal server error"})
+    }
+}

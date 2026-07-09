@@ -5,6 +5,7 @@ import Service from './components/Service'
 import About from './components/About'
 import Cars from './components/Cars'
 import Testimonials from './components/Testimonials'
+import Contact from './components/Contact'
 
 function HeroPage() {
   return (
@@ -15,6 +16,7 @@ function HeroPage() {
       <About/>
       <Cars/>
       <Testimonials/>
+      <Contact/>
     </div>
   )
 }

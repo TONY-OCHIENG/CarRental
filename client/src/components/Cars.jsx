@@ -19,7 +19,7 @@ function Cars() {
         }
     ]
   return (
-    <div id='cars' className='py-16 bg-gray-100 h-[100vh] w-full'>
+    <div id='cars' className='py-16 bg-gray-100 h-screen w-full'>
         <div className='max-w-7xl md:w-[80%] mx-auto w-full px-4'>
             <h1 className='text-center md:text-5xl text-3xl text-gray-800 font-extrabold'>
                 Most Popular Cars
@@ -28,7 +28,7 @@ function Cars() {
                 {
                     car.map((item) => (
                         <div className='p-4 rounded-md bg-white'>
-                            <img src={item.img} alt=""  className='h-[350px] w-full'/>
+                            <img src={item.img} alt=""  className=' h-[170px] md:h-[250px] w-[400px] object-cover'/>
                             <h1 className='mt-4 text-gray-700 font-extrabold'>{item.name}</h1>
                             <p className='text-gray-600 text-sm mt-2'>{item.desc}</p>
                             <button className='py-2 w-full border border-red-600 text-red-600 mt-4 rounded-md cursor-pointer'>Book Now</button>

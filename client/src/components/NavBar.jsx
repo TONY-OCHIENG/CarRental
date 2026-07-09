@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-scroll'
+import { MenuIcon } from 'lucide-react'
 function NavBar() {
     const navigationLink = [
         {name: "Home",href:"home"},
@@ -10,6 +11,7 @@ function NavBar() {
         {name: "Contact us", href: "contact"}
     ]
   return (
+    <div className='relative'>
     <div className='h-[10vh] w-full fixed shadow-md bg-gray-100 flex justify-center items-center'>
         <div className='max-w-7xl md:w-[80%] w-full px-2 flex justify-between items-center'>
             <h1 className='text-2xl font-extrabold'>ROUTE<span className='text-red-600'>CAB</span></h1>
@@ -29,9 +31,30 @@ function NavBar() {
                 }
              </ul>
            </div>
-           <button className='px-8 py-2 bg-red-600 text-white rounded-md font-bold cursor-pointer'>Sign in</button>
+           <button className='hidden md:block px-8 py-2 bg-red-600 text-white rounded-md font-bold cursor-pointer'>Sign in</button>
+           <MenuIcon className='md:hidden mr-4 font-2xl cursor-pointer'/>
         </div>
-    </div>
+        
+     </div>
+     <div className='absolute fixed h-[100vh] w-[80%] shadow-md bg-white'>
+         <h1 className='text-2xl font-extrabold m-10'>ROUTE<span className='text-red-600'>CAB</span></h1>
+          <ul className='m-10 text-md text-gray-600 text-xl'>
+                {
+                    navigationLink.map((item) => (
+                        <li className='mb-5 cursor-pointer'>
+                            <Link
+                            to={item.href}
+                            spy
+                            smooth
+                            activeClass={"link-active"}
+                            >{item.name}</Link>
+                        </li>
+                    ))
+                }
+             </ul>
+        <button className='ml-10 px-8 py-2 bg-red-600 text-white rounded-md font-bold cursor-pointer'>Sign in</button>
+     </div>
+   </div>
   )
 }
 

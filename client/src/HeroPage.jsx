@@ -3,6 +3,7 @@ import NavBar from './components/NavBar'
 import Home from './components/Home'
 import Service from './components/Service'
 import About from './components/About'
+import Cars from './components/Cars'
 
 function HeroPage() {
   return (
@@ -11,6 +12,7 @@ function HeroPage() {
       <Home/>
       <Service/>
       <About/>
+      <Cars/>
     </div>
   )
 }

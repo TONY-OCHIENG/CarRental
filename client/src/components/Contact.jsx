@@ -8,13 +8,13 @@ function Contact() {
         <div>
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31912.88996057807!2d35.850748745292115!3d-1.0786990802984637!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182c0301de8b0645%3A0x226cac4459fc8e39!2sNarok!5e0!3m2!1sen!2ske!4v1783614814980!5m2!1sen!2ske" 
         
-            className='md:w-[500px] md:h-[450px] h-[200px] w-full'
+            className='md:w-[500px] md:h-[450px] h-[400px] w-full'
             style={{border:"0"}} 
             allowfullscreen="" 
             loading="lazy" 
             referrerpolicy="strict-origin-when-cross-origin"></iframe>
         </div>
-        <div className='bg-white p-4  rounded-md'>
+        <div className='bg-white p-4  rounded-md '>
          <form action="" className='w-full h-full'>
           <label htmlFor="firstName" className='text-md text-gray-600'>First name</label>
           <input type="text"  className='text-gray-400 text-md border w-full p-1 rounded-md mb-1' name='firstName'/>

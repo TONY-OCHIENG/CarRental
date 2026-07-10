@@ -128,8 +128,8 @@ carrental/
 ```
 
 ## 📸 Screenshots
-https://github.com/TONY-OCHIENG/CarRental/blob/main/screenshot/Screenshot%20From%202026-07-10%2016-21-33.png
-https://github.com/TONY-OCHIENG/CarRental/blob/6c1dee3896b56fa8c6f7cc3277359892dab7e0fa/screenshot/Screenshot%20From%202026-07-10%2016-24-56.png
+! [image alt](https://github.com/TONY-OCHIENG/CarRental/blob/main/screenshot/Screenshot%20From%202026-07-10%2016-21-33.png)
+! [image alt](https://github.com/TONY-OCHIENG/CarRental/blob/6c1dee3896b56fa8c6f7cc3277359892dab7e0fa/screenshot/Screenshot%20From%202026-07-10%2016-24-56.png)
 
 > Add screenshots or GIFs of your homepage, search results, and booking flow here.
 

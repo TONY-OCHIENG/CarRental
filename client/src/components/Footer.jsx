@@ -24,7 +24,7 @@ function Footer() {
                                 <a href="#" className='text-sm text-white/60 hover:text-white transition-colors'>About</a>
                                 <a href="#" className='text-sm text-white/60 hover:text-white transition-colors'>Portfolio</a>
                                 <a href="#" className='text-sm text-white/60 hover:text-white transition-colors'>Contact</a>
-                                <a href="#" className='text-sm text-white/60 hover:text-white transition-colors'>FAQ</a>
+                                <a href="/login" className='text-sm text-white/60 hover:text-white transition-colors'>Admin</a>
                             </div>
                         </div>
             

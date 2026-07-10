@@ -1,6 +1,11 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 function Home() {
+  const navigate = useNavigate()
+  const handleNavigate = () => {
+    navigate('/user/login')
+  }
   return (
     <div id='home' className='py-16 w-full h-screen  bg-white'>
         <div className='max-w-7xl md:w-[80%] mx-auto w-full h-full px-4 flex md:flex-row flex-col justify-between'>
@@ -10,7 +15,7 @@ function Home() {
              our affordable car rentals for an opulent yet economical ride </p>
              <div className='flex md:gap-10 flex-col md:flex-row'>
                 <button className='mt-10 px-8 py-2 rounded-full cursor-pointer border bg-red-600 text-white font-extrabold'>Get in Touch</button>
-                <button className='mt-10 px-16 py-2 rounded-full cursor-pointer border font-extrabold'>Login</button>
+                <button className='mt-10 px-16 py-2 rounded-full cursor-pointer border font-extrabold' onClick={() => handleNavigate()}>Login</button>
              </div>
              <p className='text-sm text-gray-400 mt-10'>Over 1000+ satisfied clients</p>
             </div>

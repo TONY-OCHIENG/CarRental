@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-scroll'
 import { MenuIcon, XIcon } from 'lucide-react'
 import { useState } from 'react'
+import { useNavigate, useNavigation } from 'react-router-dom'
 function NavBar() {
     const navigationLink = [
         {name: "Home",href:"home"},
@@ -14,6 +15,10 @@ function NavBar() {
     const [open, setOpen] = useState(false)
     const handleOpen = () => {
         setOpen(!open)
+    }
+    const navigate = useNavigate()
+    const handleNavigate = () => {
+        navigate('/user/register')
     }
   return (
     <div className='relative'>
@@ -36,7 +41,7 @@ function NavBar() {
                 }
              </ul>
            </div>
-           <button className='hidden md:block px-8 py-2 bg-red-600 text-white rounded-md font-bold cursor-pointer'>Sign in</button>
+           <button className='hidden md:block px-8 py-2 bg-red-600 text-white rounded-md font-bold cursor-pointer' onClick={() => handleNavigate()}>Sign in</button>
            <div onClick={() => handleOpen()}>
             {
                 open ? <XIcon className='md:hidden mr-4 font-2xl cursor-pointer font-bold'/> : <MenuIcon className='md:hidden mr-4 font-2xl cursor-pointer font-bold'/>
@@ -63,7 +68,7 @@ function NavBar() {
                     ))
                 }
              </ul>
-        <button className='ml-10 px-8 py-2 bg-red-600 text-white rounded-md font-bold cursor-pointer'>Sign in</button>
+        <button className='ml-10 px-8 py-2 bg-red-600 text-white rounded-md font-bold cursor-pointer' onClick={() => handleNavigate()}>Sign in</button>
      </div>
    </div>
   )

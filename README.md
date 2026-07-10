@@ -133,6 +133,7 @@ carrental/
 ![image alt](https://github.com/TONY-OCHIENG/CarRental/blob/b51024d57a92c8e541595b6a0a9d1a9748bb3927/screenshot/Screenshot%20From%202026-07-10%2016-23-00.png)
 ![image alt](https://github.com/TONY-OCHIENG/CarRental/blob/da42a548ee8415086685cb806dc14eb3ad10dce5/screenshot/Screenshot%20From%202026-07-10%2016-22-50.png)
 ![image alt](https://github.com/TONY-OCHIENG/CarRental/blob/441ab1267955de5947db7ad30869d03cfe980ecd/screenshot/Screenshot%20From%202026-07-10%2016-22-39.png)
+![image alt](screenshot/Screenshot From 2026-07-10 16-22-06.png)
 
 
 > Add screenshots or GIFs of your homepage, search results, and booking flow here.

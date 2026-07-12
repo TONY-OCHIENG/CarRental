@@ -51,7 +51,6 @@ CarRental is a web-based platform that connects users with available rental vehi
 - JWT Authentication
 - Cloudinary (image hosting)
 
-> Replace the above with your actual tech stack.
 
 ## 🚀 Getting Started
 
